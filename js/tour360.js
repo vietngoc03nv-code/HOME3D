@@ -26,9 +26,10 @@ const Tour360 = (function () {
       thumb: 'assets/panoramas/living_room/thumbnail.jpg',
       radarPos: { x: 50, y: 55 },
       hotspots: [
-        { title: 'Ra Ban Công View Phố', targetRoom: 'balcony', lon: 15, lat: -5 },
+        { title: 'Ra Ban Công View Biển', targetRoom: 'balcony', lon: 15, lat: -5 },
         { title: 'Khu Bếp & Bàn Ăn', targetRoom: 'kitchen', lon: 145, lat: -6 },
-        { title: 'Phòng Ngủ Master', targetRoom: 'master_bedroom', lon: -110, lat: -4 }
+        { title: 'Phòng Ngủ Master', targetRoom: 'master_bedroom', lon: -110, lat: -4 },
+        { title: 'Phòng Ngủ 2', targetRoom: 'bedroom_2', lon: -50, lat: -5 }
       ]
     },
     balcony: {
