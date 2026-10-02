@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=5, user-scalable=1" name="viewport"/>
+    <link rel="shortcut icon" href="assets/lien-he/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="assets/lien-he/favicon.svg" type="image/svg+xml">
+
+    <title>Liên Hệ Ban Quản Lý &amp; Tư Vấn Dự Án | LUFFY HOME</title>
+    <meta name="description" content="Liên hệ trực tiếp Ban Quản Lý dự án LUFFY HOME - Tòa nhà 9 tầng cao cấp ven biển Đà Nẵng. Hotline tư vấn căn hộ, chính sách bán hàng và tham quan thực tế ảo 3D.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:site_name" content="LUFFY HOME - Tòa Nhà 9 Tầng Cao Cấp">
+    <meta property="og:title" content="Liên Hệ Ban Quản Lý &amp; Tư Vấn Dự Án | LUFFY HOME">
+    <meta property="og:description" content="Liên hệ trực tiếp Ban Quản Lý dự án LUFFY HOME - Tòa nhà 9 tầng cao cấp ven biển Đà Nẵng. Hotline tư vấn căn hộ, chính sách bán hàng và tham quan thực tế ảo 3D.">
+    <meta property="og:url" content="lien-he">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="assets/lien-he/banner_lien_he.jpg">
+    <meta name="twitter:title" content="Liên Hệ Ban Quản Lý &amp; Tư Vấn Dự Án | LUFFY HOME">
+    <meta name="twitter:description" content="Liên hệ trực tiếp Ban Quản Lý dự án LUFFY HOME - Tòa nhà 9 tầng cao cấp ven biển Đà Nẵng. Hotline tư vấn căn hộ, chính sách bán hàng và tham quan thực tế ảo 3D.">
+
+    <link media="all" type="text/css" rel="stylesheet" href="https://newtowndiamond.vn/assets/css/libs.css">
+    <link media="all" type="text/css" rel="stylesheet" href="https://newtowndiamond.vn/assets/css/styles.css">
+    <link media="all" type="text/css" rel="stylesheet" href="https://newtowndiamond.vn/assets/css/responsive.css">
+    <link media="all" type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link media="all" type="text/css" rel="stylesheet" href="https://newtowndiamond.vn/assets/customs/styles.css">
+
+    <style>
+        /* Header & Brand Layout Alignment */
+        header {
+            background: #ffffff !important;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.08) !important;
+            height: 105px !important;
+            display: flex !important;
+            align-items: center !important;
+            padding: 0 !important;
+        }
+        header .container {
+            width: 100% !important;
+        }
+        main {
+            margin-top: 105px !important;
+        }
+        .contact_info {
+            background: url("assets/lien-he/bg-contact.png") no-repeat left center / cover, #101F33 !important;
+            padding: 70px 45px 55px 45px !important;
+            border-radius: 0 10px 10px 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .contact_50.map iframe {
+            border-radius: 10px 0 0 10px;
+            display: block;
+        }
+        .contact_box {
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .contacts {
+            border-top: 2px solid #EC741B !important;
+            padding-top: 25px !important;
+        }
+        .contacts .info li {
+            margin-top: 18px !important;
+            display: flex;
+            align-items: flex-start;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        .contacts .info li span {
+            margin-right: 12px;
+            flex-shrink: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .btn_submit_contact {
+            background: #EC741B;
+            color: #ffffff;
+            border: none;
+            border-radius: 100px;
+            height: 48px;
+            padding: 0 35px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(236, 116, 27, 0.35);
+            cursor: pointer;
+        }
+        .btn_submit_contact:hover {
+            background: #d46312;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(236, 116, 27, 0.45);
+            color: #ffffff;
+        }
+
+        @media (max-width: 991px) {
+            .contact_box {
+                flex-direction: column !important;
+            }
+            .contact_50:first-child,
+            .contact_50:last-child {
+                width: 100% !important;
+            }
+            .contact_50.map iframe {
+                height: 350px !important;
+                border-radius: 10px 10px 0 0 !important;
+            }
+            .contact_info {
+                border-radius: 0 0 10px 10px !important;
+                padding: 40px 25px !important;
+            }
+            .form_ul li {
+                flex: 0 0 50% !important;
+                max-width: 50% !important;
+            }
+        }
+        @media (max-width: 576px) {
+            .form_ul li {
+                flex: 0 0 100% !important;
+                max-width: 100% !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-4">
+                    <div class="header_left flex-center-between">
+                        <div class="flex-center btn_menu">
+                            <a href="javascript:void(0)" id="hamburger" class="Sticky hamburger-btn">
+                            <span class="mburger mburger--collapse">
+                                <b></b>
+                                <b></b>
+                                <b></b>
+                            </span>
+                            </a>
+                            <span>Menu</span>
+                        </div>
+                        <a href="javascript:void(0)" title="" class="choose inflex-center-center">
+                            <i class="fal fa-search"></i><span>Chọn căn hộ</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4 col-4">
+                    <div class="logo flex-center-center">
+                        <a href="./" title="LUFFY HOME" style="display: flex; align-items: center; justify-content: center; text-decoration: none;">
+                            <img src="assets/lien-he/logo.svg" alt="LUFFY HOME" style="height: 48px; width: auto; max-width: 250px; display: block;" />
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4 col-4">
+                    <div class="header_right flex-center-between">
+                        <a href="javascript:void(0)" title="" class="call_agains inflex-center-center">
+                            <i class="fal fa-phone rotate-90"></i><span>Yêu cầu gọi lại</span>
+                        </a>
+                        <div class="lang inflex-center-center relative">
+                            <span class="inflex-center-center"><i class="fal fa-globe"></i></span>
+                            <a href="javascript:void(0)" title="" class="en">EN</a>
+                            <a href="javascript:void(0)" title="" class="vi active">VIE</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Slide-in Main Navigation Menu -->
+    <section class="header_abs" id="hd_menu">
+        <div class="abs_content height-100">
+            <div class="container height-100">
+                <div class="row height-100">
+                    <div class="col-md-6 height-100">
+                        <ul class="header_nav">
+                            <li class="class-1">
+                                <a href="./"><span>TRANG CHỦ</span></a>
+                            </li>
+                            <li>
+                                <a href="gioi-thieu"><span>GIỚI THIỆU</span></a>
+                            </li>
+                            <li>
+                                <a href="vi-tri"><span>VỊ TRÍ</span></a>
+                            </li>
+                            <li>
+                                <a href="tien-ich"><span>TIỆN ÍCH DỰ ÁN</span></a>
+                            </li>
+                            <li>
+                                <a href="thiet-ke"><span>THIẾT KẾ</span></a>
+                            </li>
+                            <li>
+                                <a href="thu-vien"><span>THƯ VIỆN</span></a>
+                            </li>
+                            <li>
+                                <a href="./#tin-tuc"><span>TIN TỨC</span></a>
+                            </li>
+                            <li class="current">
+                                <a href="lien-he"><span>LIÊN HỆ</span></a>
+                            </li>
+                            <li>
+                                <a href="tour" target="_blank" style="color: #df7627; font-weight: 700;">
+                                    <span>VIRTUAL TOUR 360 &amp; 3D</span>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <div class="header_nav_bot">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <ul class="hover_as">
+                                        <li><a href="./#tien-do"><span>TIẾN ĐỘ THI CÔNG</span></a></li>
+                                        <li><a href="./#chinh-sach"><span>CHÍNH SÁCH BÁN HÀNG</span></a></li>
+                                        <li><a href="tour"><span>XEM CĂN HỘ MẪU 3D</span></a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <a href="tour" title="" class="video text-uppercase">
+                                        <span><i class="fal fa-cube"></i></span>
+                                        3D &amp; Virtual Tour 360
+                                    </a>
+                                    <a href="./#tai-lieu" title="" class="down text-uppercase">
+                                        <span><i class="fal fa-download"></i></span>
+                                        Tải tài liệu dự án
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 height-100">
+                        <div class="menu_img height-100">
+                            <div class="group_img">
+                                <div class="img_item img_item_0">
+                                    <img src="assets/lien-he/banner_lien_he.jpg" alt="LUFFY HOME">
+                                </div>
+                                <div class="img_item img_item_1">
+                                    <img src="assets/thu-vien/can_ho_living_room_1.jpg" alt="Căn Hộ Mẫu LUFFY HOME">
+                                </div>
+                                <div class="img_item img_item_2">
+                                    <img src="assets/thu-vien/tien_ich_rooftop_pool.jpg" alt="Hồ Bơi Tầng 9">
+                                </div>
+                                <div class="img_item img_item_3">
+                                    <img src="assets/thu-vien/tien_ich_beach_club.jpg" alt="Beach Club LUFFY HOME">
+                                </div>
+                                <div class="img_item img_item_4">
+                                    <img src="assets/thu-vien/canh_quan_building_hero.jpg" alt="Kiến Trúc Đương Đại">
+                                </div>
+                                <div class="img_item img_item_5">
+                                    <img src="assets/thu-vien/can_ho_master_bedroom_1.jpg" alt="Phòng Ngủ Master">
+                                </div>
+                                <div class="img_item img_item_6">
+                                    <img src="assets/thu-vien/canh_quan_my_khe.jpg" alt="Bãi Biển Mỹ Khê">
+                                </div>
+                                <div class="img_item img_item_7">
+                                    <img src="assets/thu-vien/so_do_tang_9story.png" alt="Sơ Đồ Tầng">
+                                </div>
+                                <div class="img_item img_item_8">
+                                    <img src="assets/thu-vien/mat_bang_can_ho_108m.png" alt="Mặt Bằng Căn Hộ">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Apartment Type Selector Modal -->
+    <section class="header_abs" id="choose">
+        <div class="abs_content height-100">
+            <div class="choose_flex height-100">
+                <a href="tour" title="Căn Hộ Studio / 1PN" class="choose_item">
+                    <h3>căn hộ<br>Studio Deluxe<br>35 - 45 m²</h3>
+                    <span class="btn_100"><i class="fal fa-arrow-right"></i></span>
+                </a>
+                <a href="tour" title="Căn Hộ 2 Phòng Ngủ" class="choose_item">
+                    <h3>căn hộ<br>2 phòng ngủ<br>68 - 75 m²</h3>
+                    <span class="btn_100"><i class="fal fa-arrow-right"></i></span>
+                </a>
+                <a href="tour" title="Căn Hộ 3 Phòng Ngủ & Penthouse" class="choose_item">
+                    <h3>căn hộ<br>3 phòng ngủ / Penthouse<br>95 - 120 m²</h3>
+                    <span class="btn_100"><i class="fal fa-arrow-right"></i></span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call Again Request Modal -->
+    <section class="header_abs" id="call_again">
+        <div class="abs_content height-100">
+            <div class="container height-100">
+                <div class="call_form height-100 relative">
+                    <button class="close_header"><i class="fal fa-times"></i></button>
+                    <h3 class="font-size-40 mgb-60 text-br text-uppercase text-Condensed">
+                        Yêu cầu <br> gọi lại
+                    </h3>
+                    <form class="frm" action="javascript:void(0)" method="POST">
+                        <input type="text" placeholder="Họ và tên" name="name" required>
+                        <input type="number" min="0" placeholder="Số điện thoại" name="phone" required>
+                        <input type="email" placeholder="Email" name="email">
+                        <select name="content">
+                            <option value="">Thời gian có thể liên hệ</option>
+                            <option value="Sáng (8h - 12h)">Sáng (8h - 12h)</option>
+                            <option value="Trưa (12h - 14h)">Trưa (12h - 14h)</option>
+                            <option value="Chiều (14h - 18h)">Chiều (14h - 18h)</option>
+                        </select>
+                        <button type="submit" class="btn_sub mgt-30">GỬI THÔNG TIN TƯ VẤN</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main>
+        <!-- Page Banner -->
+        <section class="banner_page relative">
+            <div class="zoom-img"><span><img src="assets/lien-he/banner_lien_he.jpg" alt="Liên hệ LUFFY HOME"> </span></div>
+            <div class="absolute flex-end">
+                <div class="container">
+                    <h1 class="text-Condensed text-uppercase text-white">Liên hệ</h1>
+                </div>
+            </div>
+        </section>
+
+        <!-- Breadcrumbs -->
+        <section class="breads pdt-30">
+            <div class="container">
+                <ul class="flex-center">
+                    <li><a href="./" title="Trang chủ"><img src="assets/images/icon-home.png" alt="Trang chủ"> </a></li>
+                    <li><span>Liên hệ</span></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Contact Info & Map Section -->
+        <section class="contactss pd-60">
+            <div class="container">
+                <h2 class="font-size-32 font-600 mgb-30" style="color: #101F33; font-family: 'Playfair Display', serif;">Thông Tin Liên Hệ Ban Quản Lý</h2>
+                <div class="contact_box flex">
+                    <!-- Google Map Embed -->
+                    <div class="contact_50 map">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15342.542559788038!2d108.2757131!3d15.980393!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31421173f2124b39%3A0xcbd6a0100b016da5!2sLUFFY%20HOME%20Da%20Nang!5e0!3m2!1svi!2s!4v1727247978442!5m2!1svi!2s" width="100%" height="540" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+
+                    <!-- Contact Details Card -->
+                    <div class="contact_50 contact_info">
+                        <div class="ct_1 flex-center" style="margin-bottom: 25px;">
+                            <img src="assets/lien-he/logo_white.svg" alt="LUFFY HOME" style="height: 52px; width: auto; max-width: 260px;">
+                        </div>
+                        <div class="contacts">
+                            <div style="color: #EC741B; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 15px; margin-bottom: 12px; font-family: 'Montserrat', sans-serif;">
+                                VĂN PHÒNG BAN QUẢN LÝ DỰ ÁN
+                            </div>
+                            <ul class="info">
+                                <li>
+                                    <span><img src="assets/images/icon-art-1.png" alt=""></span>
+                                    <div><strong>Dự án:</strong> LUFFY HOME - Tòa Nhà 9 Tầng Cao Cấp</div>
+                                </li>
+                                <li>
+                                    <span><img src="assets/images/icon-map.png" alt=""></span>
+                                    <div><strong>Địa chỉ:</strong> Đường Trường Sa, P. Ngũ Hành Sơn, TP. Đà Nẵng</div>
+                                </li>
+                                <li>
+                                    <span><img src="assets/images/icon-phone.png" alt=""></span>
+                                    <div><strong>Hotline 24/7:</strong> <a href="tel:0905123456" title="Hotline" class="hover_a" style="color: #EC741B; font-weight: 700;">0905 123 456</a> - <a href="tel:0948961188" title="Hotline" class="hover_a" style="color: #EC741B; font-weight: 700;">0948 961 188</a></div>
+                                </li>
+                                <li>
+                                    <span><img src="assets/images/icon-mail.png" alt=""></span>
+                                    <div><strong>Email liên hệ:</strong> <a href="mailto:cskh@luffyhome.vn" title="Email" class="hover_a text-underline">cskh@luffyhome.vn</a></div>
+                                </li>
+                                <li>
+                                    <span><i class="fal fa-globe" style="color: #EC741B; font-size: 16px;"></i></span>
+                                    <div><strong>Website:</strong> <a href="./" title="Website" class="hover_a">www.luffyhome.vn</a></div>
+                                </li>
+                                <li>
+                                    <span><i class="fal fa-clock" style="color: #EC741B; font-size: 16px;"></i></span>
+                                    <div><strong>Giờ làm việc:</strong> 08:00 - 20:00 (Tất cả các ngày trong tuần)</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Registration & Consultation Form -->
+        <section class="resgis pd-60">
+            <div class="container">
+                <div class="font-500 font-size-32 text-uppercase text-blue mgb-60" style="font-family: 'Playfair Display', serif;">Đăng ký nhận thông tin dự án</div>
+                <form class="form" action="javascript:void(0)" method="POST" id="contact-page-form">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form_item">
+                                <p>Họ và tên: <span style="color: #EC741B;">*</span></p>
+                                <input type="text" placeholder="Nguyễn Văn A" name="name" required>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form_item">
+                                <p>Số điện thoại: <span style="color: #EC741B;">*</span></p>
+                                <input type="tel" placeholder="0905 xxx xxx" name="phone" required>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form_item">
+                                <p>Email liên hệ:</p>
+                                <input type="email" placeholder="example@gmail.com" name="email">
+                            </div>
+                        </div>
+                        <div class="col-md-12 mgt-60">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <p class="font-size-14" style="font-weight: 700; color: #101F33; margin-bottom: 10px;">Thông tin Quý khách đang quan tâm:</p>
+                                    <p class="font-size-13 text-gray" style="line-height: 1.5;">* Ban Quản Lý cam kết bảo mật tuyệt đối thông tin cá nhân của Quý khách theo tiêu chuẩn dự án.</p>
+                                </div>
+                                <div class="col-md-8">
+                                    <ul class="form_ul">
+                                        <li>
+                                            <label>
+                                                <input type="radio" value="Căn hộ Studio / 1PN" name="type_interested" checked>
+                                                <span>Căn hộ Studio / 1PN</span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label>
+                                                <input type="radio" value="Căn hộ 2 Phòng Ngủ" name="type_interested">
+                                                <span>Căn hộ 2 Phòng Ngủ</span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label>
+                                                <input type="radio" value="Căn hộ 3PN &amp; Penthouse" name="type_interested">
+                                                <span>Căn hộ 3PN &amp; Penthouse</span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label>
+                                                <input type="radio" value="Tiến độ thanh toán &amp; Chiết khấu" name="type_interested">
+                                                <span>Tiến độ thanh toán</span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label>
+                                                <input type="radio" value="Chính sách bàn giao nội thất 5 sao" name="type_interested">
+                                                <span>Bàn giao nội thất 5 sao</span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label>
+                                                <input type="radio" value="Đăng ký trải nghiệm Tour 3D &amp; 360" name="type_interested">
+                                                <span>Trải nghiệm Tour 3D &amp; 360</span>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="flex-center-end mgt-60">
+                                <button type="submit" class="btn_submit_contact">
+                                    <span>GỬI YÊU CẦU TƯ VẤN</span>
+                                    <i class="fal fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <section class="footer">
+            <div class="container">
+                <div class="footer_top">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="ft_logo">
+                                <a href="./" title="LUFFY HOME">
+                                    <img src="assets/lien-he/logo_white.svg" alt="LUFFY HOME" style="height: 48px; width: auto;" />
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="ftt_r flex-center-between">
+                                <a href="./#tai-lieu" title="" class="hover_a">
+                                    Tải tài liệu dự án
+                                </a>
+                                <div class="social flex-center">
+                                    <a href="javascript:void(0)" title="" class="fab fa-facebook-f"></a>
+                                    <a href="javascript:void(0)" title="" class="fab fa-youtube"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer_bot">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <ul class="ft_contact">
+                                <li><span><img src="assets/images/icon-art-1.png" alt=""> </span>LUFFY HOME - Tòa Nhà 9 Tầng Cao Cấp</li>
+                                <li><span><img src="assets/images/icon-map.png" alt=""> </span>Đường Trường Sa, P. Ngũ Hành Sơn, TP. Đà Nẵng</li>
+                                <li><span><img src="assets/images/icon-phone.png" alt=""> </span><a href="tel:0905123456" title="" class="hover_a">Hotline Ban Quản Lý: 0905 123 456 - 0948 961 188</a> </li>
+                                <li><span><img src="assets/images/icon-mail.png" alt=""> </span><a href="mailto:cskh@luffyhome.vn" title="" class="hover_a text-underline">cskh@luffyhome.vn</a> </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="ftb_r">
+                                <div class="ft_nav">
+                                    <ul>
+                                        <li><a href="./"><span>Trang chủ</span></a></li>
+                                        <li><a href="gioi-thieu"><span>Giới thiệu</span></a></li>
+                                        <li><a href="vi-tri"><span>Vị trí</span></a></li>
+                                        <li><a href="tien-ich"><span>Tiện ích</span></a></li>
+                                        <li><a href="thiet-ke"><span>Thiết kế</span></a></li>
+                                        <li><a href="thu-vien"><span>Thư viện</span></a></li>
+                                        <li><a href="./#tin-tuc"><span>Tin tức</span></a></li>
+                                        <li class="current"><a href="lien-he"><span>Liên hệ</span></a></li>
+                                    </ul>
+                                </div>
+                                <div class="auth">
+                                    <p class="font-size-14 text-white mgb-10">Đơn vị thi công &amp; Giám sát</p>
+                                    <a href="./" title="" class="auth"><img src="assets/images/auth.png" alt=""></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="copyright text-center" style="padding: 20px 0; background: #07101c; color: #64748b; font-size: 13px;">
+            Copyright © 2026 LUFFY HOME. Tòa Nhà 9 Tầng Cao Cấp. All rights reserved.
+        </section>
+    </footer>
+
+    <!-- Floating Right Social Bar -->
+    <ul class="sc_fixed">
+        <li><a href="tel:0905123456" title="Hotline"><img src="assets/images/sc-1.png" alt=""> </a> </li>
+        <li><a href="https://zalo.me" target="_blank" title="Zalo"><img src="assets/images/sc-2.png" alt=""> </a> </li>
+        <li><a href="javascript:void(0)" title="Facebook"><img src="assets/images/sc-3.png" alt=""> </a> </li>
+        <li><a href="javascript:void(0)" title="Youtube"><img src="assets/images/sc-4.png" alt=""> </a> </li>
+        <li><a href="tour" target="_blank" title="Mô hình 3D &amp; Virtual Tour"><img src="assets/images/sc-5.png" alt=""> </a> </li>
+    </ul>
+
+    <!-- Core Scripts -->
+    <script src="https://newtowndiamond.vn/assets/js/libs.js"></script>
+    <script src="https://newtowndiamond.vn/assets/js/private.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://newtowndiamond.vn/assets/customs/scripts.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var form = document.getElementById('contact-page-form');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    if (typeof toastr !== 'undefined') {
+                        toastr.success('Cảm ơn Quý khách! Yêu cầu liên hệ đã được gửi thành công. Ban Quản Lý LUFFY HOME sẽ gọi lại tư vấn trong vòng 15 phút.', 'Tiếp nhận thành công');
+                    } else {
+                        alert('Cảm ơn Quý khách! Ban Quản Lý LUFFY HOME sẽ gọi lại tư vấn trong vòng 15 phút.');
+                    }
+                    form.reset();
+                });
+            }
+        });
+    </script>
+</body>
+</html>

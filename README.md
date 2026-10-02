@@ -14,6 +14,7 @@
 | **Tiện Ích** | `tien-ich.html` | `/tien-ich` | Hồ bơi vô cực chân mây, Sky Bar, Gym & Spa 5 sao, Beach Club, Vườn nhiệt đới |
 | **Thiết Kế** | `thiet-ke.html` | `/thiet-ke` | Kính Low-E cản nhiệt, 100% căn hộ đón sáng tự nhiên, mặt bằng các tầng |
 | **Thư Viện** | `thu-vien.html` | `/thu-vien` | Bộ sưu tập hình ảnh 4 phân khu chuyên biệt kèm Lightbox phóng to sắc nét |
+| **Liên Hệ** | `lien-he.html` | `/lien-he` | Bản đồ định vị Google Maps, thông tin Ban Quản Lý, form đăng ký tư vấn |
 | **Tour 3D & 360°** | `tour.html` | `/tour` | Tòa nhà 3D tương tác (Three.js), tách tầng (exploded view), chế độ Ngày/Đêm, 360° Radar |
 
 ---
@@ -32,6 +33,7 @@ D:\Home3D\
 ├── thiet-ke.html                # Trang Kiến trúc & Thiết kế
 ├── thu-vien.html                # Trang Thư viện hình ảnh
 ├── thu-vien-hinh-anh.html       # Alias định tuyến thư viện
+├── lien-he.html                 # Trang Liên hệ & Tư vấn dự án
 ├── tour.html                    # Ứng dụng thực tế ảo Tour 3D & 360°
 ├── server.py                    # Web server Python hỗ trợ Clean URLs (bỏ .html)
 ├── start_server.bat             # Khởi chạy server 1 chạm trên Windows
@@ -47,6 +49,7 @@ D:\Home3D\
 │   ├── tien-ich/                # Ảnh tiện ích (Hồ bơi, Sky Bar, Gym, Spa...)
 │   ├── thiet-ke/                # Ảnh kiến trúc, vật liệu Low-E, mặt bằng
 │   ├── thu-vien/                # Kho ảnh chất lượng cao 4 chủ đề
+│   ├── lien-he/                 # Ảnh banner liên hệ, logo & thẻ liên hệ
 │   ├── home/                    # Tài nguyên giao diện chung
 │   └── panoramas/               # Ảnh 360° Panorama cho Tour VR
 ├── css/                         # Thư viện Stylesheets
