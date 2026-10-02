@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>LUFFY HOME - 3D & 360° Virtual Tour Tòa Nhà 9 Tầng Cao Cấp</title>
+  <link rel="shortcut icon" href="assets/trang-chu/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="css/style.css" />
+    <script>
+        /* Tu dong xoa duoi .html tren thanh dia chi URL */
+        if (window.location.protocol.startsWith('http') && window.location.pathname.endsWith('.html')) {
+            var cleanPath = window.location.pathname.replace(/\/index\.html$/, '/').replace(/\.html$/, '');
+            window.history.replaceState(null, '', (cleanPath || '/') + window.location.search + window.location.hash);
+        }
+    </script>
+    <!-- Google Fonts with full Vietnamese support -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400;1,600&family=Roboto+Condensed:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6.5.1 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Master Typography & Font Icon Fix -->
+    
+</head>
+<body>
+
+  <!-- WebGL Render Canvas Container -->
+  <div id="canvas-container"></div>
+
+  <!-- Screen Curtain Fade for Room Transitions -->
+  <div id="curtain-fade" class="curtain-fade"></div>
+
+  <!-- Interactive 360 Hotspots Container -->
+  <div id="hotspots-layer" class="ui-overlay pointer-events-auto"></div>
+
+  <!-- Master UI Overlay -->
+  <div class="ui-overlay">
+
+    <!-- Top Navigation Bar -->
+    <header class="top-nav pointer-events-auto">
+      <!-- Brand & Project Title -->
+      <a href="./" class="brand-badge" title="Về trang chủ LUFFY HOME" style="text-decoration: none; display: flex; align-items: center; gap: 12px;">
+        <img src="assets/trang-chu/logo_white.svg" alt="LUFFY HOME" style="height: 44px; width: auto;" />
+      </a>
+
+      <!-- Mode Switcher -->
+      <div class="mode-switcher">
+        <button id="btn-mode-3d" class="mode-btn active">
+          <span>🏢</span> Tổng Quan 3D
+        </button>
+        <button id="btn-mode-tour" class="mode-btn">
+          <span>🌐</span> Tour 360° Nội Thất
+        </button>
+      </div>
+
+      <!-- Quick Action Tools -->
+      <div class="top-tools">
+        <a href="./" class="tool-btn" title="Về trang chủ" style="text-decoration: none; display: flex; align-items: center; justify-content: center; color: inherit;">
+          🏠
+          <span class="tooltip-custom">Trang chủ</span>
+        </a>
+        <button id="btn-floorplan" class="tool-btn" title="Mặt bằng">
+          🗺️
+          <span class="tooltip-custom">Mặt bằng</span>
+        </button>
+        <button id="btn-night" class="tool-btn active" title="Ngày/Đêm">
+          ☀️
+          <span class="tooltip-custom">Ngày / Đêm</span>
+        </button>
+        <button id="btn-auto-rotate" class="tool-btn" title="Tự động xoay">
+          🔄
+          <span class="tooltip-custom">Tự động xoay</span>
+        </button>
+        <button id="btn-info" class="tool-btn" title="Thông số tòa nhà">
+          ℹ️
+          <span class="tooltip-custom">Thông tin</span>
+        </button>
+        <button id="btn-contact" class="tool-btn" title="Đặt lịch xem nhà">
+          📞
+          <span class="tooltip-custom">Liên hệ</span>
+        </button>
+        <button id="btn-fullscreen" class="tool-btn" title="Toàn màn hình">
+          ⛶
+          <span class="tooltip-custom">Toàn màn hình</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Left Elevator Floor Selector -->
+    <aside id="floor-elevator" class="floor-elevator pointer-events-auto">
+      <div class="elevator-header">CHỌN TẦNG</div>
+      <button class="floor-btn" data-floor="9">
+        <span class="floor-tag">T9</span>
+        <span class="floor-title">Rooftop Sky Bar</span>
+      </button>
+      <button class="floor-btn" data-floor="8">
+        <span class="floor-tag">T8</span>
+        <span class="floor-title">Penthouse Duplex</span>
+      </button>
+      <button class="floor-btn" data-floor="7">
+        <span class="floor-tag">T7</span>
+        <span class="floor-title">Căn Hộ 3PN</span>
+      </button>
+      <button class="floor-btn" data-floor="6">
+        <span class="floor-tag">T6</span>
+        <span class="floor-title">Căn 2PN Panorama</span>
+      </button>
+      <button class="floor-btn active" data-floor="5">
+        <span class="floor-tag">T5</span>
+        <span class="floor-title">Căn Hộ 2PN</span>
+      </button>
+      <button class="floor-btn" data-floor="4">
+        <span class="floor-tag">T4</span>
+        <span class="floor-title">Căn Hộ 2PN</span>
+      </button>
+      <button class="floor-btn" data-floor="3">
+        <span class="floor-tag">T3</span>
+        <span class="floor-title">Studio Deluxe</span>
+      </button>
+      <button class="floor-btn" data-floor="2">
+        <span class="floor-tag">T2</span>
+        <span class="floor-title">Studio Deluxe</span>
+      </button>
+      <button class="floor-btn" data-floor="1">
+        <span class="floor-tag">T1</span>
+        <span class="floor-title">Sảnh & Grand Lobby</span>
+      </button>
+    </aside>
+
+    <!-- 3D Exploded View Toggle Float Bar (Visible in 3D Mode) -->
+    <div id="building-controls" class="building-controls-bar pointer-events-auto">
+      <button id="btn-explode" class="ctrl-btn">
+        <span>🧩</span> Tách Tầng Xem Nội Thất (Exploded View)
+      </button>
+    </div>
+
+    <!-- 3D Mode Floor Info Popup Badge -->
+    <div id="floor-3d-popup" class="floor-3d-popup pointer-events-auto hidden">
+      <div class="f-badge-info">
+        <h3 id="f-badge-title">Tầng 5: Căn Hộ Tiêu Chuẩn 2PN</h3>
+        <p id="f-badge-sub">2 Phòng Ngủ - 2 WC • 78 m²</p>
+        <p id="f-badge-furn" style="font-size: 11px; color: #f59e0b; margin-top: 4px; line-height: 1.4;">Nội thất: Sofa da, bàn ăn gỗ Sồi, giường ngủ Master, tủ bếp</p>
+      </div>
+      <button id="btn-enter-tour" class="btn-enter-tour">
+        <span>Khám Phá Tour 360°</span> ➤
+      </button>
+    </div>
+
+    <!-- 2D Floorplan Radar Overlay (Toggleable) -->
+    <div id="floorplan-box" class="floorplan-radar-box pointer-events-auto hidden">
+      <div class="floorplan-title">
+        <span>MẶT BẰNG CĂN HỘ LUFFY HOME</span>
+        <span class="floorplan-close">✕</span>
+      </div>
+      <div class="floorplan-canvas-wrap">
+        <img src="assets/floorplans/mat_bang_tang.png" alt="Mặt bằng tầng" />
+        <div id="radar-cam-dot" class="radar-cam-dot" style="left: 50%; top: 55%;"></div>
+        <div id="radar-cam-cone" class="radar-fov-cone" style="left: 50%; top: 55%;"></div>
+      </div>
+    </div>
+
+    <!-- Bottom Room Gallery Carousel (Visible in 360 Tour Mode) -->
+    <nav id="bottom-room-bar" class="bottom-room-bar pointer-events-auto" style="display: none;"></nav>
+
+  </div>
+
+  <!-- Information Modal -->
+  <div id="modal-info" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-close">✕</div>
+      <div class="modal-header">
+        <h2>TỔNG QUAN TÒA NHÀ 9 TẦNG LUFFY HOME</h2>
+        <p>Kiến Trúc Đương Đại • Hoàn Thiện & Trang Bị Full Nội Thất Cao Cấp</p>
+      </div>
+      <div class="spec-grid">
+        <div class="spec-item">
+          <span>Quy Mô Tòa Nhà</span>
+          <strong>09 Tầng Nổi + 01 Tầng Hầm</strong>
+        </div>
+        <div class="spec-item">
+          <span>Tiêu Chuẩn Bàn Giao</span>
+          <strong>Full Đồ Nội Thất 5 Sao</strong>
+        </div>
+        <div class="spec-item">
+          <span>Mặt Tiền & Cửa Sổ</span>
+          <strong>Kính Low-E Kép Cách Âm</strong>
+        </div>
+        <div class="spec-item">
+          <span>Tầng Thượng (Tầng 9)</span>
+          <strong>Hồ Bơi Vô Cực & Sky Bar</strong>
+        </div>
+        <div class="spec-item">
+          <span>Hệ Thống Điện & Nước</span>
+          <strong>Smart Home Thông Minh</strong>
+        </div>
+        <div class="spec-item">
+          <span>An Ninh Quản Lý</span>
+          <strong>Camera AI & Bảo Vệ 24/7</strong>
+        </div>
+      </div>
+      <div class="info-desc">
+        <p>LUFFY HOME được thiết kế theo phong cách đương đại với toàn bộ mặt tiền kính Low-E cách âm, cách nhiệt. Không gian các tầng tràn ngập ánh sáng tự nhiên với ban công rộng mở ngắm toàn cảnh thành phố và biển, trang bị đầy đủ đồ đạc nội thất nhập khẩu chuẩn khách sạn 5 sao.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact Modal -->
+  <div id="modal-contact" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-close">✕</div>
+      <div class="modal-header">
+        <h2>LIÊN HỆ & ĐẶT LỊCH THAM QUAN</h2>
+        <p>Ban Quản Lý Tòa Nhà LUFFY HOME • Hotline: 0905 123 456 - 0948 961 188</p>
+      </div>
+      <form id="booking-form" class="booking-form">
+        <div class="form-group">
+          <label>Họ và tên của bạn</label>
+          <input type="text" placeholder="Nguyễn Văn A" required />
+        </div>
+        <div class="form-group">
+          <label>Số điện thoại</label>
+          <input type="tel" placeholder="0905 xxx xxx" required />
+        </div>
+        <div class="form-group">
+          <label>Tầng / Loại căn hộ quan tâm</label>
+          <select>
+            <option>Studio Deluxe (Tầng 2 - 3)</option>
+            <option selected>Căn Hộ 2 Phòng Ngủ (Tầng 4 - 6)</option>
+            <option>Căn Hộ 3 Phòng Ngủ (Tầng 7)</option>
+            <option>Penthouse Duplex (Tầng 8)</option>
+            <option>Rooftop Sky Bar (Tầng 9)</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-submit">GỬI YÊU CẦU TƯ VẤN</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Core Libraries -->
+  <script src="js/three.min.js"></script>
+  <script src="js/OrbitControls.js"></script>
+
+  <!-- Application Modules -->
+  <script src="js/building3d.js"></script>
+  <script src="js/tour360.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>

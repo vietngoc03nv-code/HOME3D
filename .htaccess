@@ -1,0 +1,21 @@
+# ========================================================
+# LUFFY HOME - Clean URLs Configuration (.htaccess)
+# ========================================================
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # 1. 301 Redirect /index.html -> /
+    RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.html\ HTTP/ [NC]
+    RewriteRule ^index\.html$ / [R=301,L]
+
+    # 2. 301 Redirect /page.html -> /page
+    RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /([^.]+)\.html\ HTTP/ [NC]
+    RewriteRule ^([^.]+)\.html$ /$1 [R=301,L]
+
+    # 3. Rewrite /page -> /page.html internally (so user URL remains /page)
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME}\.html -f
+    RewriteRule ^(.*)$ $1.html [L]
+</IfModule>

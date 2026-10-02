@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=5, user-scalable=1" name="viewport"/>
+    <link rel="shortcut icon" href="assets/thiet-ke/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="assets/thiet-ke/favicon.svg" type="image/svg+xml">
+
+    <title>Thiết Kế Đẳng Cấp | LUFFY HOME - Tòa Nhà 9 Tầng Cao Cấp Đà Nẵng</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:site_name" content="LUFFY HOME - Nghệ thuật sống cân bằng &amp; Đẳng cấp">
+    <meta property="og:title" content="Thiết Kế Đẳng Cấp | LUFFY HOME">
+    <meta property="og:description" content="Khám phá kiến trúc đương đại và thiết kế tối ưu ánh sáng tự nhiên, hệ kính Low-E chạm sàn của tòa nhà 9 tầng LUFFY HOME Đà Nẵng.">
+    <meta property="og:url" content="thiet-ke">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="assets/thiet-ke/banner_thiet_ke.jpg">
+
+        <link media="all" type="text/css" rel="stylesheet" href="https://newtowndiamond.vn/assets/css/libs.css">
+    <link media="all" type="text/css" rel="stylesheet" href="https://newtowndiamond.vn/assets/css/styles.css">
+    <link media="all" type="text/css" rel="stylesheet" href="https://newtowndiamond.vn/assets/css/responsive.css">
+    <link media="all" type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link media="all" type="text/css" rel="stylesheet" href="https://newtowndiamond.vn/assets/customs/styles.css">
+
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-4">
+                    <div class="header_left flex-center-between">
+                        <div class="flex-center btn_menu">
+                            <a href="javascript:void(0)" id="hamburger" class="Sticky hamburger-btn">
+                            <span class="mburger mburger--collapse">
+                                <b></b>
+                                <b></b>
+                                <b></b>
+                            </span>
+                            </a>
+                            <span>Menu</span>
+                        </div>
+                        <a href="javascript:void(0)" title="" class="choose inflex-center-center">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg><span>Chọn căn hộ</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4 col-4">
+                    <div class="logo flex-center-center">
+                        <a href="./" title="LUFFY HOME" style="display: flex; align-items: center; justify-content: center; text-decoration: none;">
+                            <img src="assets/thiet-ke/logo.svg" alt="LUFFY HOME" style="height: 48px; width: auto; max-width: 250px; display: block;" />
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4 col-4">
+                    <div class="header_right flex-center-between">
+                        <a href="javascript:void(0)" title="" class="call_agains inflex-center-center">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg><span>Yêu cầu gọi lại</span>
+                        </a>
+                        <div class="lang inflex-center-center relative">
+                            <span class="inflex-center-center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg></span>
+                            <a href="javascript:void(0)" title="" class="en">EN</a>
+                            <a href="javascript:void(0)" title="" class="vi active">VIE</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Slide-in Main Navigation Menu -->
+    <section class="header_abs" id="hd_menu">
+        <div class="abs_content height-100">
+            <div class="container height-100">
+                <div class="row height-100">
+                    <div class="col-md-6 height-100">
+                        <ul class="header_nav">
+                            <li class="class-1">
+                                <a href="./"><span>TRANG CHỦ</span></a>
+                            </li>
+                            <li>
+                                <a href="gioi-thieu"><span>GIỚI THIỆU</span></a>
+                            </li>
+                            <li>
+                                <a href="vi-tri"><span>VỊ TRÍ</span></a>
+                            </li>
+                            <li>
+                                <a href="tien-ich"><span>TIỆN ÍCH DỰ ÁN</span></a>
+                            </li>
+                            <li class="current">
+                                <a href="thiet-ke"><span>THIẾT KẾ</span></a>
+                            </li>
+                            <li>
+                                <a href="thu-vien"><span>THƯ VIỆN</span></a>
+                            </li>
+                            <li>
+                                <a href="./#tin-tuc"><span>TIN TỨC</span></a>
+                            </li>
+                            <li>
+                                <a href="./#lien-he"><span>LIÊN HỆ</span></a>
+                            </li>
+                            <li>
+                                <a href="tour" target="_blank" style="color: #df7627; font-weight: 700;">
+                                    <span>VIRTUAL TOUR 360 &amp; 3D</span>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <div class="header_nav_bot">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <ul class="hover_as">
+                                        <li><a href="./#tien-do"><span>TIẾN ĐỘ THI CÔNG</span></a></li>
+                                        <li><a href="./#chinh-sach"><span>CHÍNH SÁCH BÁN HÀNG</span></a></li>
+                                        <li><a href="tour"><span>XEM CĂN HỘ MẪU 3D</span></a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <a href="tour" title="" class="video text-uppercase">
+                                        <span><i class="fa-solid fa-cube"></i></span>
+                                        3D &amp; Virtual Tour 360
+                                    </a>
+                                    <a href="./#tai-lieu" title="" class="down text-uppercase">
+                                        <span><i class="fa-solid fa-download"></i></span>
+                                        Tải tài liệu dự án
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 height-100">
+                        <div class="menu_img height-100">
+                            <div class="group_img">
+                                <div class="img_item img_item_0">
+                                    <img src="assets/thiet-ke/banner_thiet_ke.jpg" alt="LUFFY HOME">
+                                </div>
+                                <div class="img_item img_item_1">
+                                    <img src="assets/thiet-ke/interior_1.jpg" alt="Căn Hộ Mẫu LUFFY HOME">
+                                </div>
+                                <div class="img_item img_item_2">
+                                    <img src="assets/thiet-ke/pool.jpg" alt="Hồ Bơi Tầng 9">
+                                </div>
+                                <div class="img_item img_item_3">
+                                    <img src="assets/thiet-ke/amenity_1.jpg" alt="Sky Bar LUFFY HOME">
+                                </div>
+                                <div class="img_item img_item_4">
+                                    <img src="assets/thiet-ke/inspiration-1.png" alt="Kiến Trúc Đương Đại">
+                                </div>
+                                <div class="img_item img_item_5">
+                                    <img src="assets/thiet-ke/interior_1.jpg" alt="Nội Thất Sang Trọng">
+                                </div>
+                                <div class="img_item img_item_6">
+                                    <img src="assets/thiet-ke/banner_thiet_ke.jpg" alt="Phối Cảnh Ban Ngày">
+                                </div>
+                                <div class="img_item img_item_7">
+                                    <img src="assets/thiet-ke/ds-3.png" alt="Sơ Đồ Tầng">
+                                </div>
+                                <div class="img_item img_item_8">
+                                    <img src="assets/thiet-ke/design-1.png" alt="Mặt Bằng Căn Hộ">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Apartment Type Selector Modal -->
+    <section class="header_abs" id="choose">
+        <div class="abs_content height-100">
+            <div class="choose_flex height-100">
+                <a href="tour" title="Căn Hộ Studio / 1PN" class="choose_item">
+                    <h3>căn hộ<br>Studio Deluxe<br>35 - 45 m²</h3>
+                    <span class="btn_100"><i class="fa-solid fa-arrow-right"></i></span>
+                </a>
+                <a href="tour" title="Căn Hộ 2 Phòng Ngủ" class="choose_item">
+                    <h3>căn hộ<br>2 phòng ngủ<br>68 - 75 m²</h3>
+                    <span class="btn_100"><i class="fa-solid fa-arrow-right"></i></span>
+                </a>
+                <a href="tour" title="Căn Hộ 3 Phòng Ngủ & Penthouse" class="choose_item">
+                    <h3>căn hộ<br>3 phòng ngủ / Penthouse<br>95 - 120 m²</h3>
+                    <span class="btn_100"><i class="fa-solid fa-arrow-right"></i></span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call Again Request Modal -->
+    <section class="header_abs" id="call_again">
+        <div class="abs_content height-100">
+            <div class="container height-100">
+                <div class="call_form height-100 relative">
+                    <button class="close_header"><i class="fa-solid fa-xmark"></i></button>
+                    <h3 class="font-size-40 mgb-60 text-br text-uppercase text-Condensed">
+                        Yêu cầu <br> gọi lại
+                    </h3>
+                    <form class="frm" action="javascript:void(0)" method="POST">
+                        <input type="text" placeholder="Họ và tên" name="name" required>
+                        <input type="number" min="0" placeholder="Số điện thoại" name="phone" required>
+                        <input type="email" placeholder="Email" name="email">
+                        <select name="content">
+                            <option value="">Thời gian có thể liên hệ</option>
+                            <option value="Sáng (8h - 12h)">Sáng (8h - 12h)</option>
+                            <option value="Trưa (12h - 14h)">Trưa (12h - 14h)</option>
+                            <option value="Chiều (14h - 18h)">Chiều (14h - 18h)</option>
+                        </select>
+                        <button type="submit" class="btn_sub mgt-30">GỬI THÔNG TIN TƯ VẤN</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main>
+        <!-- Page Banner -->
+        <section class="banner_page relative">
+            <div class="zoom-img"><span><img src="assets/thiet-ke/banner_thiet_ke.jpg" alt="Thiết kế kiến trúc LUFFY HOME"> </span></div>
+            <div class="absolute flex-end">
+                <div class="container">
+                    <h1 class="text-Condensed text-uppercase text-white">Kiến Trúc &amp; Thiết Kế</h1>
+                    <p style="color: rgba(255,255,255,0.85); font-size: 18px; margin-top: 8px;">Tòa Nhà 9 Tầng Cao Cấp • Chuẩn Mực Nghỉ Dưỡng Thượng Lưu Ven Biển Đà Nẵng</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Breadcrumbs -->
+        <section class="breads pdt-30">
+            <div class="container">
+                <ul class="flex-center">
+                    <li><a href="./" title="Trang chủ"><img src="assets/images/icon-home.png" alt="Home"> </a></li>
+                    <li><span>Kiến trúc &amp; Thiết kế</span></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Sub Nav (Thiết kế / Mặt bằng / Xem căn hộ mẫu 3D) -->
+        <section class="tk_navs pd-60">
+            <div class="container">
+                <div class="tk_nav tk_nav_33 flex-end relative">
+                    <a href="thiet-ke" title="Thiết kế" class="tk_link text-Condensed inflex-center-end active">Thiết kế</a>
+                    <a href="tour" title="Mặt bằng 3D" class="tk_link text-Condensed inflex-center-end">Mặt bằng 3D</a>
+                    <a href="tour" target="_blank" title="Xem căn hộ mẫu 3D & 360" class="tk_watch hover_a inflex-center-center">
+                        <i class="fa-solid fa-cube mgr-10" style="font-size: 16px;"></i>
+                        <span class="text-uppercase">Xem căn hộ mẫu 3D</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1: Sống Tràn Cảm Hứng -->
+        <section class="design_1 relative">
+            <div class="live_1 relative">
+                <div class="container">
+                    <div class="live_1_content">
+                        <div class="group_text text-Condensed text-uppercase text-blue">
+                            <p>SỐNG TRÀN CẢM HỨNG</p>
+                            <p>TẦM NHÌN PANORAMA KHOÁNG ĐẠT ÔM TRỌN BIỂN ĐÀ NẴNG &amp; SÂN GOLF</p>
+                        </div>
+                        <div class="des_number">
+                            <span>09</span>
+                            <p>tầng nổi<br>kiệt tác</p>
+                        </div>
+                        <div class="des_number">
+                            <span>100%</span>
+                            <p>tầm view<br>khoáng đạt</p>
+                        </div>
+                        <div class="swiper-static">
+                            <div class="swiper-button swiper-button-prev prev-1"></div>
+                            <div class="swiper-button swiper-button-next next-1"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slider 1 -->
+            <div class="live_2 relative">
+                <div class="live_2_slider">
+                    <div class="swiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide live_item">
+                                <div class="zoom-img"><span><img src="assets/thiet-ke/thiet_ke_facade.jpg" alt="Mặt tiền kiến trúc đương đại tòa nhà 9 tầng LUFFY HOME"></span></div>
+                            </div>
+                            <div class="swiper-slide live_item">
+                                <div class="zoom-img"><span><img src="assets/thiet-ke/thiet_ke_balcony.jpg" alt="Ban công Panorama hướng biển Mỹ Khê"></span></div>
+                            </div>
+                            <div class="swiper-slide live_item">
+                                <div class="zoom-img"><span><img src="assets/thiet-ke/thiet_ke_living.jpg" alt="Không gian phòng khách sang trọng tràn ngập ánh sáng"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination swiper-pagination-1"></div>
+            </div>
+
+            <!-- Description Text -->
+            <div class="design_1_text">
+                <p class="text-justify">
+                    Được chắt lọc từ tinh hoa kiến trúc đương đại kết hợp nghệ thuật hưởng thụ cuộc sống nghỉ dưỡng ven biển Đà Nẵng, <strong>LUFFY HOME</strong> là biểu tượng của phong cách sống phóng khoáng, thanh lịch và trường tồn cùng thời gian. Tòa nhà 9 tầng được thiết kế tỉ mỉ với hệ lam nhôm mỹ thuật, kính Low-E tràn viền và ban công xanh thoáng đãng, đón trọn bầu không khí trong lành của biển Mỹ Khê và sắc xanh bất tận của sân golf 36 hố quốc tế ngay trước ngưỡng cửa.
+                </p>
+            </div>
+        </section>
+
+        <!-- Highlights Specs Grid -->
+        <section class="container" style="padding-top: 30px; padding-bottom: 30px;">
+            <div class="spec_grid_custom">
+                <div class="spec_card_c">
+                    <div class="num">09</div>
+                    <div class="tit">Tầng Nổi Cao Cấp</div>
+                    <div class="sub">+ 01 tầng hầm đỗ xe thông minh</div>
+                </div>
+                <div class="spec_card_c">
+                    <div class="num">100%</div>
+                    <div class="tit">Ánh Sáng Tự Nhiên</div>
+                    <div class="sub">Tất cả phòng ngủ đều có ban công</div>
+                </div>
+                <div class="spec_card_c">
+                    <div class="num">Low-E</div>
+                    <div class="tit">Kính Chạm Sàn</div>
+                    <div class="sub">Cách âm nhiệt &amp; tiết kiệm điện năng</div>
+                </div>
+                <div class="spec_card_c">
+                    <div class="num">5 Sao</div>
+                    <div class="tit">Full Đồ Nội Thất</div>
+                    <div class="sub">Bàn giao chìa khóa trao tay</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: 100% Phòng Ngủ Ánh Sáng Tự Nhiên -->
+        <section class="design_2">
+            <div class="flex flex-wrap">
+                <div class="w-61">
+                    <div class="ut_3_l relative">
+                        <div class="live_3_slider" dir="rtl">
+                            <div class="swiper">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide live_item">
+                                        <div class="zoom-img">
+                                            <span><img src="assets/thiet-ke/bedroom_natural_light_1.jpg" alt="Phòng ngủ Master ngập tràn ánh nắng tự nhiên"></span>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide live_item">
+                                        <div class="zoom-img">
+                                            <span><img src="assets/thiet-ke/bedroom_natural_light_2.jpg" alt="Không gian nghỉ dưỡng ấm cúng chuẩn 5 sao"></span>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide live_item">
+                                        <div class="zoom-img">
+                                            <span><img src="assets/thiet-ke/bedroom_natural_light_3.jpg" alt="Phòng ngủ 2 thông thoáng đón gió tự nhiên"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-pagination swiper-pagination-2"></div>
+                    </div>
+                </div>
+                <div class="w-39">
+                    <div class="ut_3_right height-100">
+                        <div class="ut_3_title text-Condensed text-uppercase">
+                            <span class="t_100">100%</span>
+                            <span class="t_100_t">phòng ngủ</span>
+                        </div>
+                        <p class="as">ánh sáng &amp; gió<br/>tự nhiên</p>
+                        <p style="color: #64748b; font-size: 15px; line-height: 1.6; margin-top: 15px; margin-bottom: 25px;">
+                            Mỗi căn hộ tại LUFFY HOME đều được các kiến trúc sư tính toán hướng gió và ánh sáng tự nhiên tối ưu. Tất cả phòng ngủ đều sở hữu cửa sổ lớn kịch trần mở ra ban công đón gió biển trong lành, loại bỏ hoàn toàn góc tối, mang lại luồng sinh khí dồi dào và nguồn năng lượng tích cực mỗi ngày cho gia chủ.
+                        </p>
+                        <div class="swiper-static">
+                            <div class="swiper-button swiper-button-prev prev-2"></div>
+                            <div class="swiper-button swiper-button-next next-2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Thưởng Lãm View Panorama - Hệ Kính Low-E Chạm Sàn -->
+        <section class="design_3 relative">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="ds_3_text mgb-30 mgt-30 text-Condensed text-uppercase">
+                            <p class="p1"></p>
+                            <p class="p2 mgb-10">Thưởng lãm trọn vẹn</p>
+                            <p class="p3">tầm view panorama</p>
+                        </div>
+                        <div class="ds_3_text ds_3_text2 text-Condensed text-uppercase">
+                            <p class="p2 mgb-10">Hệ kính <br>chạm sàn</p>
+                            <p class="p1 mgb-10">Low-E</p>
+                            <p class="p3">tối ưu điện năng &amp; điểm chạm với thiên nhiên</p>
+                        </div>
+                        <div class="swiper-static swiper-static-x mgt-30">
+                            <div class="swiper-button swiper-button-prev prev-3"></div>
+                            <div class="swiper-button swiper-button-next next-3"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ds_3_slider">
+                <div class="relative">
+                    <div class="swiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="zoom-img"><span><img src="assets/thiet-ke/panorama_view_1.jpg" alt="Tầm nhìn Panorama phòng khách"></span></div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="zoom-img"><span><img src="assets/thiet-ke/panorama_view_2.jpg" alt="Không gian mở liên thông phòng ăn"></span></div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="zoom-img"><span><img src="assets/thiet-ke/panorama_view_3.jpg" alt="Phòng ngủ Master view biển vô cực"></span></div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="zoom-img"><span><img src="assets/thiet-ke/panorama_view_4.jpg" alt="Ban công hoàng hôn tuyệt đẹp"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-pagination swiper-pagination-30 swiper-pagination-3"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Mặt Bằng & Cơ Cấu Phân Bổ Tầng -->
+        <section class="container pdt-60 pdb-30">
+            <div style="text-align: center; margin-bottom: 40px;">
+                <h2 style="font-size: 32px; font-weight: 700; color: #0f172a; text-transform: uppercase; font-family: 'Playfair Display', serif;">
+                    SƠ ĐỒ PHÂN BỔ TẦNG &amp; THIẾT KẾ CÔNG NĂNG
+                </h2>
+                <p style="color: #64748b; font-size: 16px; margin-top: 10px;">
+                    Mặt cắt chi tiết 9 tầng nổi và 1 tầng hầm - Tối ưu hóa không gian cho mục đích ở &amp; khai thác cho thuê nghỉ dưỡng
+                </p>
+            </div>
+            <div class="row align-items-center">
+                <div class="col-md-7">
+                    <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid #cbd5e1;">
+                        <img src="assets/thiet-ke/ds-3.png" alt="Sơ đồ phân bổ tầng LUFFY HOME" style="width: 100%; display: block;" />
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid #cbd5e1;">
+                        <img src="assets/thiet-ke/design-1.png" alt="Bản vẽ mặt bằng căn hộ 108m2 LUFFY HOME" style="width: 100%; display: block;" />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Virtual Tour 360 Section -->
+        <section class="container pdt-30 pdb-60">
+            <div class="cta_tour_box">
+                <h2 style="font-size: 32px; font-weight: 800; text-transform: uppercase; margin-bottom: 15px; color: #f59e0b;">
+                    TRẢI NGHIỆM THỰC TẾ ẢO 360 &amp; MÔ HÌNH 3D CĂN HỘ
+                </h2>
+                <p style="font-size: 16px; color: #cbd5e1; max-width: 780px; margin: 0 auto 30px; line-height: 1.7;">
+                    Khám phá từng chi tiết hoàn thiện nội thất 5 sao của tòa nhà 9 tầng LUFFY HOME qua công nghệ 3D tương tác đa điểm. Tự do di chuyển giữa các phòng, chuyển đổi chế độ Ngày/Đêm, quan sát góc nhìn 360 độ chân thực mọi lúc mọi nơi.
+                </p>
+                <a href="tour" target="_blank" class="cta_tour_btn">
+                    <i class="fa-solid fa-vr-cardboard" style="font-size: 20px;"></i>
+                    <span>KHÁM PHÁ CĂN HỘ 3D NGAY</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <section class="footer">
+            <div class="container">
+                <div class="footer_top">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="ft_logo">
+                                <a href="./" title="LUFFY HOME" style="display: inline-block; text-decoration: none;">
+                                    <img src="assets/thiet-ke/logo_white.svg" alt="LUFFY HOME" style="height: 52px; width: auto; max-width: 260px; display: block;" />
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="ftt_r flex-center-between">
+                                <a href="./#tai-lieu" title="" class="hover_a">
+                                    Tải tài liệu dự án
+                                </a>
+                                <div class="social flex-center">
+                                    <a href="javascript:void(0)" title="" class="fa-brands fa-facebook-f"></a>
+                                    <a href="javascript:void(0)" title="" class="fa-brands fa-youtube"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer_bot">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <ul class="info">
+                                <li><span><img src="assets/images/icon-map.png" alt=""> </span>Đường Trường Sa, P. Ngũ Hành Sơn, TP. Đà Nẵng</li>
+                                <li><span><img src="assets/images/icon-phone.png" alt=""> </span><a href="tel:0905123456" title="" class="hover_a">Hotline Ban Quản Lý: 0905 123 456 - 0948 961 188</a> </li>
+                                <li><span><img src="assets/images/icon-mail.png" alt=""> </span><a href="mailto:cskh@luffyhome.vn" title="" class="hover_a text-underline">cskh@luffyhome.vn</a> </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="ftb_r">
+                                <div class="ft_nav">
+                                    <ul>
+                                        <li><a href="./"><span>Trang chủ</span></a></li>
+                                        <li><a href="gioi-thieu"><span>Giới thiệu</span></a></li>
+                                        <li><a href="vi-tri"><span>Vị trí</span></a></li>
+                                        <li><a href="tien-ich"><span>Tiện ích</span></a></li>
+                                        <li class="current"><a href="thiet-ke"><span>Thiết kế</span></a></li>
+                                        <li><a href="thu-vien"><span>Thư viện</span></a></li>
+                                        <li><a href="./#tin-tuc"><span>Tin tức</span></a></li>
+                                        <li><a href="./#lien-he"><span>Liên hệ</span></a></li>
+                                    </ul>
+                                </div>
+                                <div class="auth">
+                                    <p class="font-size-14 text-white mgb-10">Đơn vị thi công &amp; Giám sát</p>
+                                    <a href="./" title="" class="auth"><img src="assets/images/auth.png" alt=""></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="copyright text-center" style="padding: 20px 0; background: #07101c; color: #64748b; font-size: 13px;">
+            Copyright © 2026 LUFFY HOME. Tòa Nhà 9 Tầng Cao Cấp. All rights reserved.
+        </section>
+    </footer>
+
+    <!-- Floating Right Social Bar -->
+    <ul class="sc_fixed">
+        <li><a href="tel:0905123456" title="Hotline"><img src="assets/images/sc-1.png" alt=""> </a> </li>
+        <li><a href="https://zalo.me" target="_blank" title="Zalo"><img src="assets/images/sc-2.png" alt=""> </a> </li>
+        <li><a href="javascript:void(0)" title="Facebook"><img src="assets/images/sc-3.png" alt=""> </a> </li>
+        <li><a href="javascript:void(0)" title="Youtube"><img src="assets/images/sc-4.png" alt=""> </a> </li>
+        <li><a href="tour" target="_blank" title="Mô hình 3D &amp; Virtual Tour"><img src="assets/images/sc-5.png" alt=""> </a> </li>
+    </ul>
+
+    <!-- Core Scripts -->
+    <script src="https://newtowndiamond.vn/assets/js/libs.js"></script>
+    <script src="https://newtowndiamond.vn/assets/js/private.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://newtowndiamond.vn/assets/customs/scripts.js"></script>
+
+    <!-- Custom Slider Initializer Fallback & Contact Form Handler -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Slider 1 if Swiper is present
+            if (typeof Swiper !== 'undefined') {
+                try {
+                    new Swiper('.live_2_slider .swiper', {
+                        slidesPerView: 1,
+                        spaceBetween: 0,
+                        loop: true,
+                        speed: 800,
+                        autoplay: { delay: 4500, disableOnInteraction: false },
+                        pagination: { el: '.swiper-pagination-1', clickable: true },
+                        navigation: { nextEl: '.next-1', prevEl: '.prev-1' }
+                    });
+                } catch(e) {}
+
+                try {
+                    new Swiper('.live_3_slider .swiper', {
+                        slidesPerView: 1,
+                        spaceBetween: 0,
+                        loop: true,
+                        speed: 800,
+                        autoplay: { delay: 5000, disableOnInteraction: false },
+                        pagination: { el: '.swiper-pagination-2', clickable: true },
+                        navigation: { nextEl: '.next-2', prevEl: '.prev-2' }
+                    });
+                } catch(e) {}
+
+                try {
+                    new Swiper('.ds_3_slider .swiper', {
+                        slidesPerView: 1.2,
+                        spaceBetween: 20,
+                        loop: true,
+                        speed: 800,
+                        breakpoints: {
+                            768: { slidesPerView: 2.2, spaceBetween: 24 },
+                            1024: { slidesPerView: 2.6, spaceBetween: 30 }
+                        },
+                        autoplay: { delay: 5500, disableOnInteraction: false },
+                        pagination: { el: '.swiper-pagination-3', clickable: true },
+                        navigation: { nextEl: '.next-3', prevEl: '.prev-3' }
+                    });
+                } catch(e) {}
+            }
+
+            // Contact Form Submit Handler
+            document.querySelectorAll('form').forEach(function(form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    if (typeof toastr !== 'undefined') {
+                        toastr.success('Cảm ơn Quý khách! Ban Quản Lý LUFFY HOME sẽ liên hệ tư vấn trong thời gian sớm nhất.', 'Gửi thành công');
+                    } else {
+                        alert('Cảm ơn Quý khách! Ban Quản Lý LUFFY HOME sẽ liên hệ tư vấn trong thời gian sớm nhất.');
+                    }
+                    form.reset();
+                    var modal = document.getElementById('call_again');
+                    if (modal) modal.classList.remove('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

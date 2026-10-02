@@ -1,0 +1,46 @@
+================================================================================
+          HƯỚNG DẪN HỆ THỐNG TRANG CHỦ, GIỚI THIỆU & TOUR 360 LUFFY HOME
+                 (TÒA NHÀ 9 TẦNG CAO CẤP - FULL ĐỒ NỘI THẤT)
+                              Thư mục: D:\Home3D
+================================================================================
+
+1. CÁCH MỞ VÀ TRẢI NGHIỆM WEB NGAY LẬP TỨC:
+--------------------------------------------------------------------------------
+- Bước 1: Mở thư mục "D:\Home3D".
+- Bước 2: Nhấp đúp chuột vào file "start_server.bat".
+- Bước 3: Trình duyệt của bạn sẽ tự động mở Trang Chủ tại:
+          http://localhost:8080
+
+
+2. HỆ THỐNG 3 TRANG WEB CHÍNH:
+--------------------------------------------------------------------------------
+A. TRANG CHỦ (index.html):
+   - Chuẩn thiết kế sang trọng như newtowndiamond.vn.
+   - Header cố định với logo sắc nét, menu trượt, chọn căn hộ liên kết thẳng vào 3D.
+   - Bản đồ vị trí đã tùy biến ghim chuẩn tên "LUFFY HOME".
+   - Danh mục đồ nội thất bàn giao 5 sao đầy đủ 6 hạng mục.
+
+B. TRANG GIỚI THIỆU (gioi-thieu.html):
+   - Nhân bản chuẩn 1:1 từ https://newtowndiamond.vn/gioi-thieu dành cho LUFFY HOME.
+   - Banner trang trọng, Breadcrumbs, khung video giới thiệu có nút Play xem Tour 3D.
+   - Bản đồ 3 điểm chạm tương tác phân tầng tòa nhà:
+     + Tầng 1 - 3: Sảnh Grand Lobby & Studio Deluxe 55m²
+     + Tầng 4 - 7: Căn hộ 2PN & 3PN View Biển Panorama
+     + Tầng 8 - 9: Penthouse Duplex & Rooftop Infinity Pool
+   - Bảng tổng quan dự án: Chủ đầu tư, tiến độ, đơn vị giám sát, đơn vị thi công Coteccons,
+     quy mô 9 tầng nổi + 1 hầm, tổ hợp tiện ích 5 sao.
+   - Nút lớn dẫn thẳng vào trải nghiệm Virtual Tour 360 & 3D.
+
+C. HỆ THỐNG TOUR 3D & 360 CHUYÊN SÂU (tour.html):
+   - Trải nghiệm thực tế ảo sâu toàn màn hình.
+   - 9 tầng nổi trang bị đầy đủ Đồ nội thất 3D kiến trúc.
+   - Nút Tách Tầng (Exploded View), chế độ Ngày / Đêm, radar mặt bằng 2D.
+
+
+3. CÁCH THAY ĐỔI THÔNG TIN VÀ HÌNH ẢNH NHÀ THẬT:
+--------------------------------------------------------------------------------
+- Thay đổi chữ, số điện thoại, giá bán:
+  + Mở file "D:\Home3D\index.html" hoặc "D:\Home3D\gioi-thieu.html" bằng Notepad.
+- Thay hình ảnh các phòng 360:
+  + Vào thư mục "D:\Home3D\assets\panoramas\" và chép đè ảnh của bạn vào các phòng tương ứng.
+================================================================================

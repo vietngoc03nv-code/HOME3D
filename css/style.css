@@ -1,0 +1,838 @@
+/* ===================================================
+   LUXURY 3D & 360 VIRTUAL TOUR - 9-STORY BUILDING
+   Style Sheet
+   =================================================== */
+
+:root {
+  --primary-gold: #ec741b;
+  --primary-gold-hover: #ff8c38;
+  --primary-gold-glow: rgba(236, 116, 27, 0.45);
+  --bg-dark: #091625;
+  --bg-panel: rgba(16, 31, 51, 0.85);
+  --bg-panel-border: rgba(236, 116, 27, 0.3);
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --accent-cyan: #81d3cf;
+  --transition-fast: 0.25s ease;
+  --transition-normal: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  user-select: none;
+}
+
+/* Canvas Viewport */
+#canvas-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+#canvas-container canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+/* UI Overlay Layer */
+.ui-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.pointer-events-auto {
+  pointer-events: auto;
+}
+
+/* Top Navigation Bar */
+.top-nav {
+  position: absolute;
+  top: 16px;
+  left: 20px;
+  right: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 20;
+}
+
+.brand-badge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--bg-panel);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--bg-panel-border);
+  padding: 8px 18px;
+  border-radius: 40px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.brand-logo-icon {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, var(--primary-gold), #fff);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0b0f19;
+  font-weight: 800;
+  font-size: 16px;
+  box-shadow: 0 0 15px var(--primary-gold-glow);
+}
+
+.brand-text h1 {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.brand-text p {
+  font-size: 11px;
+  color: var(--primary-gold);
+  letter-spacing: 0.5px;
+}
+
+/* Mode Switcher Tabs */
+.mode-switcher {
+  display: flex;
+  background: var(--bg-panel);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--bg-panel-border);
+  border-radius: 30px;
+  padding: 4px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.mode-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  padding: 8px 18px;
+  border-radius: 24px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--transition-fast);
+}
+
+.mode-btn:hover {
+  color: #fff;
+}
+
+.mode-btn.active {
+  background: linear-gradient(135deg, var(--primary-gold), #a7823e);
+  color: #fff;
+  box-shadow: 0 4px 15px var(--primary-gold-glow);
+}
+
+/* Top Quick Tools */
+.top-tools {
+  display: flex;
+  gap: 8px;
+}
+
+.tool-btn {
+  background: var(--bg-panel);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--bg-panel-border);
+  color: #fff;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 16px;
+  transition: var(--transition-fast);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.tool-btn:hover {
+  background: rgba(30, 41, 59, 0.9);
+  border-color: var(--primary-gold);
+  color: var(--primary-gold);
+  transform: translateY(-2px);
+}
+
+.tool-btn.active {
+  background: var(--primary-gold);
+  color: #0b0f19;
+  border-color: var(--primary-gold);
+}
+
+/* Tooltip */
+.tooltip-custom {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(15, 23, 42, 0.95);
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: var(--transition-fast);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+
+.tool-btn:hover .tooltip-custom {
+  opacity: 1;
+  transform: translateX(-50%) translateY(2px);
+}
+
+/* Left Floor Selector Elevator */
+.floor-elevator {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+  background: var(--bg-panel);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--bg-panel-border);
+  border-radius: 20px;
+  padding: 12px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+  z-index: 20;
+}
+
+.elevator-header {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--primary-gold);
+  text-align: center;
+  padding-bottom: 4px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.floor-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid transparent;
+  color: #cbd5e1;
+  padding: 6px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  transition: var(--transition-fast);
+  position: relative;
+}
+
+.floor-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  border-color: rgba(197, 160, 89, 0.4);
+}
+
+.floor-btn.active {
+  background: linear-gradient(135deg, var(--primary-gold), #a7823e);
+  color: #fff;
+  font-weight: 700;
+  box-shadow: 0 2px 10px var(--primary-gold-glow);
+}
+
+.floor-tag {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.floor-title {
+  font-size: 11px;
+  opacity: 0.85;
+}
+
+/* 3D Exploded View Toggle Float Bar */
+.building-controls-bar {
+  position: absolute;
+  top: 90px;
+  right: 20px;
+  background: var(--bg-panel);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--bg-panel-border);
+  border-radius: 16px;
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  z-index: 20;
+}
+
+.ctrl-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--transition-fast);
+}
+
+.ctrl-btn:hover {
+  background: rgba(197, 160, 89, 0.2);
+  border-color: var(--primary-gold);
+  color: var(--primary-gold);
+}
+
+.ctrl-btn.active {
+  background: var(--primary-gold);
+  color: #0b0f19;
+  border-color: var(--primary-gold);
+}
+
+/* Floating Floor Info Badge in 3D Mode */
+.floor-3d-popup {
+  position: absolute;
+  bottom: 120px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg-panel);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--primary-gold);
+  border-radius: 16px;
+  padding: 16px 24px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.6), 0 0 20px var(--primary-gold-glow);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  z-index: 25;
+  transition: var(--transition-normal);
+}
+
+.floor-3d-popup.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(20px);
+}
+
+.f-badge-info h3 {
+  font-size: 16px;
+  color: #fff;
+}
+
+.f-badge-info p {
+  font-size: 12px;
+  color: var(--primary-gold);
+}
+
+.btn-enter-tour {
+  background: linear-gradient(135deg, var(--primary-gold), #dfb76c);
+  color: #0b0f19;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-enter-tour:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px var(--primary-gold-glow);
+}
+
+/* Bottom Room Gallery Carousel (Like Newtown Diamond) */
+.bottom-room-bar {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg-panel);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--bg-panel-border);
+  border-radius: 20px;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+  max-width: 90vw;
+  overflow-x: auto;
+  scrollbar-width: none;
+  z-index: 20;
+  transition: var(--transition-normal);
+}
+
+.bottom-room-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.room-card {
+  flex-shrink: 0;
+  width: 105px;
+  height: 65px;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: var(--transition-fast);
+}
+
+.room-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.room-card span {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
+  font-size: 11px;
+  font-weight: 600;
+  color: #fff;
+  padding: 4px 6px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.room-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.room-card:hover img {
+  transform: scale(1.1);
+}
+
+.room-card.active {
+  border-color: var(--primary-gold);
+  box-shadow: 0 0 15px var(--primary-gold-glow);
+}
+
+.room-card.active span {
+  color: var(--primary-gold);
+  font-weight: 700;
+}
+
+/* 2D Floorplan Radar Overlay */
+.floorplan-radar-box {
+  position: absolute;
+  top: 90px;
+  left: 20px;
+  background: var(--bg-panel);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--bg-panel-border);
+  border-radius: 16px;
+  padding: 10px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+  z-index: 20;
+  width: 220px;
+  transition: var(--transition-normal);
+}
+
+.floorplan-radar-box.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-10px);
+}
+
+.floorplan-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 8px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.floorplan-close {
+  cursor: pointer;
+  color: var(--text-muted);
+}
+
+.floorplan-close:hover {
+  color: #fff;
+}
+
+.floorplan-canvas-wrap {
+  width: 100%;
+  height: 140px;
+  position: relative;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.floorplan-canvas-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Floorplan radar camera cone */
+.radar-cam-dot {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: var(--primary-gold);
+  border: 2px solid #fff;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 10px var(--primary-gold);
+  pointer-events: none;
+}
+
+.radar-fov-cone {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-top: 35px solid rgba(197, 160, 89, 0.45);
+  transform-origin: 50% 100%;
+  pointer-events: none;
+}
+
+/* Hotspots in 360 space */
+.hotspot-point {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  z-index: 15;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+}
+
+.hotspot-inner {
+  width: 20px;
+  height: 20px;
+  background: #ffffff;
+  border-radius: 50%;
+  border: 2px solid var(--primary-gold);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.9);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: #0b0f19;
+}
+
+/* Pulsing effect like New Town Diamond */
+.hotspot-pulse {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  animation: hotspot-pulse 1.8s infinite ease-out;
+}
+
+@keyframes hotspot-pulse {
+  0% {
+    transform: scale(0.4);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+.hotspot-tooltip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  background: rgba(15, 23, 42, 0.92);
+  color: #fff;
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+  border: 1px solid var(--primary-gold);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transform: translateY(4px);
+  transition: var(--transition-fast);
+  pointer-events: none;
+}
+
+.hotspot-point:hover .hotspot-tooltip {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Modals & Dialogs */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: var(--transition-normal);
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-content {
+  background: #0f172a;
+  border: 1px solid var(--primary-gold);
+  border-radius: 20px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 28px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7), 0 0 30px var(--primary-gold-glow);
+  position: relative;
+  transform: scale(0.92);
+  transition: var(--transition-normal);
+}
+
+.modal-overlay.active .modal-content {
+  transform: scale(1);
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 20px;
+  cursor: pointer;
+  color: var(--text-muted);
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  transition: var(--transition-fast);
+}
+
+.modal-close:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+.modal-header h2 {
+  font-size: 22px;
+  color: #fff;
+  margin-bottom: 6px;
+}
+
+.modal-header p {
+  color: var(--primary-gold);
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+
+.spec-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.spec-item {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 12px 16px;
+}
+
+.spec-item span {
+  font-size: 11px;
+  color: var(--text-muted);
+  display: block;
+}
+
+.spec-item strong {
+  font-size: 15px;
+  color: #fff;
+  margin-top: 4px;
+  display: block;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.form-group input, .form-group textarea {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  padding: 12px 16px;
+  color: #fff;
+  font-size: 14px;
+  outline: none;
+  transition: var(--transition-fast);
+}
+
+.form-group input:focus, .form-group textarea:focus {
+  border-color: var(--primary-gold);
+  box-shadow: 0 0 10px var(--primary-gold-glow);
+}
+
+.btn-submit {
+  background: linear-gradient(135deg, var(--primary-gold), #a7823e);
+  color: #0b0f19;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  margin-top: 8px;
+}
+
+.btn-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px var(--primary-gold-glow);
+}
+
+/* Floor Transition Curtain */
+.curtain-fade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  z-index: 50;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.curtain-fade.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .top-nav {
+    top: 10px;
+    left: 10px;
+    right: 10px;
+  }
+  
+  .brand-text h1 {
+    font-size: 13px;
+  }
+  
+  .brand-text p {
+    display: none;
+  }
+  
+  .floor-elevator {
+    left: 10px;
+    padding: 8px 4px;
+    gap: 4px;
+  }
+  
+  .floor-btn {
+    padding: 4px 8px;
+    gap: 6px;
+  }
+  
+  .floor-title {
+    display: none;
+  }
+  
+  .bottom-room-bar {
+    bottom: 12px;
+    padding: 6px 8px;
+    gap: 6px;
+  }
+  
+  .room-card {
+    width: 80px;
+    height: 50px;
+  }
+  
+  .room-card span {
+    font-size: 10px;
+  }
+
+  .building-controls-bar {
+    top: 70px;
+    right: 10px;
+    padding: 8px 10px;
+  }
+
+  .floorplan-radar-box {
+    width: 160px;
+    top: 70px;
+    left: 10px;
+  }
+}
