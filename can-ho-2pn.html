@@ -47,6 +47,7 @@
 
   <!-- 2. Top Navigation Bar -->
   <nav class="nav">
+    <div class="menu-toggle" id="menuToggle" onclick="toggleMobileMenu()" title="Menu">☰</div>
     <ul>
       <li>
         <a href="tong-quan-360">
@@ -70,6 +71,15 @@
       </li>
     </ul>
   </nav>
+
+  <!-- Mobile Overlay Menu (1:1 Reference Match to Newtown Diamond) -->
+  <div class="mobile-overlay" id="mobileMenu">
+    <div class="mobile-menu-close" onclick="toggleMobileMenu()">✕</div>
+    <a href="tong-quan-360">🌐 TỔNG QUAN 360°</a>
+    <a href="tour">✨ CĂN HỘ 3PN (108M²)</a>
+    <a href="can-ho-2pn" class="active">🏡 CĂN HỘ 2PN (75M²)</a>
+    <a href="./">🏠 TRANG CHỦ LUFFY HOME</a>
+  </div>
 
   <!-- 3. Right Floating Action Buttons -->
   <div class="buttons">
@@ -345,6 +355,22 @@
         toggleFullscreen: toggleFullscreen
       };
     })();
+
+    function toggleMobileMenu() {
+      const toggle = document.getElementById('menuToggle');
+      const menu = document.getElementById('mobileMenu');
+      if (!menu) return;
+      const isVisible = menu.classList.contains('active');
+      if (isVisible) {
+        menu.classList.remove('active');
+        if (toggle) toggle.classList.remove('open');
+        document.body.style.overflow = '';
+      } else {
+        menu.classList.add('active');
+        if (toggle) toggle.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+    }
 
     document.addEventListener('DOMContentLoaded', () => {
       Tour2PNApp.init();

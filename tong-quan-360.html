@@ -45,10 +45,23 @@
 
   <!-- 2. Top Navigation Bar (Clean Minimalist Text matching Image 2) -->
   <nav class="nav-clean">
-    <a href="tong-quan-360" class="active">Tổng Quan</a>
-    <a href="tour">Căn Hộ 3PN</a>
-    <a href="can-ho-2pn">Căn Hộ 2PN</a>
+    <div class="menu-toggle" id="menuToggle" onclick="toggleMobileMenu()" title="Menu">☰</div>
+    <div class="nav-links">
+      <a href="tong-quan-360" class="active">Tổng Quan</a>
+      <a href="tour">Căn Hộ 3PN</a>
+      <a href="can-ho-2pn">Căn Hộ 2PN</a>
+      <a href="./">Trang Chủ</a>
+    </div>
   </nav>
+
+  <!-- Mobile Menu Overlay (1:1 Reference Match to Newtown Diamond) -->
+  <div class="mobile-overlay" id="mobileMenu">
+    <div class="mobile-menu-close" onclick="toggleMobileMenu()">✕</div>
+    <a href="tong-quan-360" class="active">🌐 TỔNG QUAN 360°</a>
+    <a href="tour">✨ CĂN HỘ 3PN (108M²)</a>
+    <a href="can-ho-2pn">🏡 CĂN HỘ 2PN (75M²)</a>
+    <a href="./">🏠 TRANG CHỦ LUFFY HOME</a>
+  </div>
 
   <!-- 3. Right Floating Action Buttons (Clean Circular Glass Buttons matching Image 2) -->
   <div class="buttons-clean">
@@ -143,6 +156,22 @@
   <!-- Initialize Master 360 Application -->
   <script src="js/master360.js"></script>
   <script>
+    function toggleMobileMenu() {
+      const toggle = document.getElementById('menuToggle');
+      const menu = document.getElementById('mobileMenu');
+      if (!menu) return;
+      const isVisible = menu.classList.contains('active');
+      if (isVisible) {
+        menu.classList.remove('active');
+        if (toggle) toggle.classList.remove('open');
+        document.body.style.overflow = '';
+      } else {
+        menu.classList.add('active');
+        if (toggle) toggle.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
     document.addEventListener('DOMContentLoaded', function () {
       const container = document.getElementById('canvas-container');
       Master360App.init(container);
