@@ -512,6 +512,103 @@ nav.nav ul li.active button {
   pointer-events: none;
 }
 
+/* Floorplan 2PN Wrapper & Dynamic Radar Beacon */
+.floorplan-map-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: 14px auto 0 auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  background: #ffffff;
+}
+
+.floorplan-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.radar-beacon {
+  position: absolute;
+  width: 0;
+  height: 0;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 15;
+  transition: left 0.3s ease, top 0.3s ease;
+}
+
+.radar-sweep {
+  position: absolute;
+  top: -45px;
+  left: -45px;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: conic-gradient(from -30deg at 50% 50%, rgba(236, 116, 27, 0.45) 0deg, rgba(236, 116, 27, 0) 60deg);
+  transform-origin: center center;
+  pointer-events: none;
+}
+
+.radar-dot {
+  position: absolute;
+  top: -7px;
+  left: -7px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #ec741b;
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 10px rgba(236, 116, 27, 0.9);
+}
+
+.floor-point {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.2s ease;
+}
+
+.floor-point:hover {
+  transform: translate(-50%, -50%) scale(1.15);
+}
+
+.point-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: rgba(16, 31, 51, 0.85);
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.point-label {
+  margin-top: 3px;
+  background: rgba(16, 31, 51, 0.9);
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  white-space: nowrap;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.floor-point:hover .point-dot {
+  background: #ec741b;
+  border-color: #ffd700;
+}
+
+.floor-point:hover .point-label {
+  background: #ec741b;
+}
+
 /* ----------------------------------------------------
    6. 3D HOTSPOT PULSE ANIMATION
    ---------------------------------------------------- */

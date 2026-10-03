@@ -1,6 +1,6 @@
 /**
  * Master 360 Virtual Tour Engine - LUFFY HOME DANANG
- * High-performance Three.js WebGL Panoramic Sphere with 3D Projected Hotspots
+ * 1:1 Exact Match to Reference Design (Flycam Aerial Ocean Perspective)
  */
 
 const Master360App = (function () {
@@ -8,97 +8,70 @@ const Master360App = (function () {
   let containerEl;
   let isUserInteracting = false;
   let onMouseDownMouseX = 0, onMouseDownMouseY = 0;
-  let lon = 15, onMouseDownLon = 15;
-  let lat = -10, onMouseDownLat = -10;
+  let lon = 0, onMouseDownLon = 0;
+  let lat = -5, onMouseDownLat = -5;
   let phi = 0, theta = 0;
-  let targetFov = 75;
+  let targetFov = 90;
   let autoRotate = false;
   let animId = null;
 
-  // 11 Master Hotspots matching Reference Layout & Da Nang geography
-  const hotspotsData = [
+  // Exact landmarks matching Image 2 reference layout
+  const landmarksData = [
     {
-      id: 'building',
-      title: 'TÒA THÁP LUFFY HOME',
-      subtitle: '👉 Bấm để Khám Phá Căn Hộ Mẫu 360°',
-      isHero: true,
-      lon: 8,
-      lat: -14,
-      onClick: function () {
-        zoomAndNavigate('tour');
-      }
-    },
-    {
-      id: 'ngu_hanh_son',
-      title: '⛰️ Núi Ngũ Hành Sơn',
-      subtitle: 'Danh thắng quốc gia đặc biệt',
-      isHero: false,
-      lon: 155,
-      lat: -6
-    },
-    {
-      id: 'bien_my_khe',
-      title: '🏖️ Bãi Tắm Tân Trà & Biển Mỹ Khê',
-      subtitle: 'Bãi biển cát trắng tuyệt đẹp',
-      isHero: false,
-      lon: -48,
-      lat: -12
-    },
-    {
-      id: 'danang_golf',
-      title: '⛳ Legend Danang Golf Resort',
-      subtitle: 'Sân gôn 36 hố đẳng cấp quốc tế',
-      isHero: false,
-      lon: 38,
-      lat: -16
+      id: 'huong_hoi_an',
+      title: 'Hướng Đi Hội An <',
+      lon: -75.0,
+      lat: -10.0,
+      dotAtEnd: true
     },
     {
       id: 'sheraton',
-      title: '🏨 Sheraton Grand Danang Resort',
-      subtitle: 'Tổ hợp nghỉ dưỡng 5 sao ven biển',
-      isHero: false,
-      lon: 65,
-      lat: -10
+      title: 'Sheraton Grand Danang Resort',
+      lon: -38.0,
+      lat: -15.0,
+      dotAtEnd: false
+    },
+    {
+      id: 'marriott',
+      title: 'Marriott Resort',
+      lon: -58.0,
+      lat: -4.0,
+      dotAtEnd: false
     },
     {
       id: 'duong_truong_sa',
-      title: '🛣️ Đường Trường Sa',
-      subtitle: 'Tuyến đại lộ du lịch biển tỷ đô',
-      isHero: false,
-      lon: -3,
-      lat: -28
-    },
-    {
-      id: 'huong_hoi_an',
-      title: '⛩️ Hướng Đi Phố Cổ Hội An',
-      subtitle: 'Khoảng cách 15 phút di chuyển',
-      isHero: false,
-      lon: -20,
-      lat: -2
+      title: 'Đường Trường Sa',
+      lon: 14.0,
+      lat: -26.0,
+      dotAtEnd: false
     },
     {
       id: 'huong_san_bay',
-      title: '✈️ Sân Bay Quốc Tế Đà Nẵng',
-      subtitle: 'Khoảng cách 15 phút di chuyển',
-      isHero: false,
-      lon: 215,
-      lat: 6
+      title: 'Hướng Đi Sân Bay Quốc Tế Đà Nẵng >',
+      lon: 35.0,
+      lat: -18.0,
+      dotAtEnd: false
     },
     {
-      id: 'cau_rong',
-      title: '🌉 Trung Tâm TP & Cầu Rồng',
-      subtitle: 'Kết nối trực tiếp trung tâm thành phố',
-      isHero: false,
-      lon: 185,
-      lat: 2
+      id: 'bai_tam_tan_tra',
+      title: 'Bãi Tắm Tân Trà',
+      lon: 26.0,
+      lat: -38.0,
+      dotAtEnd: false
     },
     {
-      id: 'canh_quan_sanh',
-      title: '🌴 Sảnh Đón & Cảnh Quan Nhiệt Đới',
-      subtitle: 'Không gian sống xanh chuẩn resort',
-      isHero: false,
-      lon: 18,
-      lat: -30
+      id: 'danang_golf',
+      title: 'Legend Danang Golf Resort',
+      lon: 60.0,
+      lat: -12.0,
+      dotAtEnd: false
+    },
+    {
+      id: 'ngu_hanh_son',
+      title: 'Núi Ngũ Hành Sơn',
+      lon: 85.0,
+      lat: 12.0,
+      dotAtEnd: false
     }
   ];
 
@@ -119,9 +92,9 @@ const Master360App = (function () {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     containerEl.appendChild(renderer.domElement);
 
-    // Build 360 Sphere Panorama
-    const sphereGeo = new THREE.SphereGeometry(500, 60, 40);
-    sphereGeo.scale(-1, 1, 1); // Invert normals so texture faces inwards
+    // Build 360 Sphere Panorama with high-res texture
+    const sphereGeo = new THREE.SphereGeometry(500, 64, 40);
+    sphereGeo.scale(-1, 1, 1);
 
     const textureLoader = new THREE.TextureLoader();
     textureLoader.load('assets/panoramas/master_aerial/aerial_360_master.jpg', function (texture) {
@@ -129,6 +102,8 @@ const Master360App = (function () {
       texture.generateMipmaps = false;
       const sphereMat = new THREE.MeshBasicMaterial({ map: texture });
       const sphereMesh = new THREE.Mesh(sphereGeo, sphereMat);
+      // Align texture center (u = 0.5) perfectly with lon = 0
+      sphereMesh.rotation.y = Math.PI;
       scene.add(sphereMesh);
 
       // Remove loading curtain
@@ -138,7 +113,7 @@ const Master360App = (function () {
       }
     });
 
-    // Create Hotspots DOM elements & register 3D positions
+    // Create 3D Projected Hotspots matching Reference
     createHotspots();
 
     // Event listeners
@@ -156,46 +131,75 @@ const Master360App = (function () {
     animate();
   }
 
+  function get3DPos(lonDeg, latDeg, radius = 450) {
+    const phiRad = THREE.MathUtils.degToRad(90 - latDeg);
+    const thetaRad = THREE.MathUtils.degToRad(lonDeg);
+    return new THREE.Vector3(
+      radius * Math.sin(phiRad) * Math.cos(thetaRad),
+      radius * Math.cos(phiRad),
+      radius * Math.sin(phiRad) * Math.sin(thetaRad)
+    );
+  }
+
   function createHotspots() {
     const layer = document.getElementById('hotspots-layer');
     if (!layer) return;
     layer.innerHTML = '';
     hotspotElements.length = 0;
 
-    hotspotsData.forEach(item => {
-      // Calculate 3D sphere coordinate
-      const phiRad = THREE.MathUtils.degToRad(90 - item.lat);
-      const thetaRad = THREE.MathUtils.degToRad(item.lon);
-      const radius = 450;
-      const pos3D = new THREE.Vector3(
-        radius * Math.sin(phiRad) * Math.cos(thetaRad),
-        radius * Math.cos(phiRad),
-        radius * Math.sin(phiRad) * Math.sin(thetaRad)
-      );
+    // 1. Central Hero Building Badge (Clean Emblem + Pin Line directly on top of LUFFY HOME)
+    const heroEl = document.createElement('div');
+    heroEl.className = 'hero-building-badge';
+    heroEl.innerHTML = `
+      <div class="hero-circle-logo">
+        <img src="assets/trang-chu/logo_badge_emblem.svg" alt="LUFFY HOME" />
+        <div class="hero-name">LUFFY HOME</div>
+        <div class="hero-sub">DANANG</div>
+      </div>
+      <div class="hero-pin-line"></div>
+      <div class="hero-pin-dot"></div>
+      <div class="hero-slogan-label">CĂN HỘ MẶT BIỂN SỞ HỮU LÂU DÀI CAO CẤP TẠI ĐÀ NẴNG</div>
+    `;
+    heroEl.addEventListener('click', () => zoomAndNavigate('tour'));
+    layer.appendChild(heroEl);
+    hotspotElements.push({
+      domEl: heroEl,
+      pos3D: get3DPos(0, 12.0)
+    });
 
-      // Create DOM element
-      const beacon = document.createElement('div');
-      beacon.className = 'hotspot-beacon ' + (item.isHero ? 'hotspot-building' : '');
+    // 2. "Xem Căn Mẫu" Isometric Roof Beacon (Down in the sea water in front of building)
+    const sampleEl = document.createElement('div');
+    sampleEl.className = 'view-sample-hotspot';
+    sampleEl.innerHTML = `
+      <div class="roof-icon-box">
+        <svg viewBox="0 0 48 32" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="4 22 24 10 44 22"></polyline>
+          <polyline points="10 26 24 17 38 26"></polyline>
+          <polyline points="16 30 24 24 32 30"></polyline>
+        </svg>
+      </div>
+      <div class="view-sample-text">Xem Căn Mẫu</div>
+    `;
+    sampleEl.addEventListener('click', () => zoomAndNavigate('tour'));
+    layer.appendChild(sampleEl);
+    hotspotElements.push({
+      domEl: sampleEl,
+      pos3D: get3DPos(0, -45.0)
+    });
 
-      let html = `
-        <div class="hotspot-inner"></div>
-        <div class="hotspot-pulse"></div>
-        <div class="hotspot-card">
-          <div style="font-size: ${item.isHero ? '14px' : '13px'}; font-weight: 700;">${item.title}</div>
-          <div style="font-size: 11px; opacity: 0.85; margin-top: 2px;">${item.subtitle}</div>
-        </div>
-      `;
-      beacon.innerHTML = html;
-
-      if (item.onClick) {
-        beacon.addEventListener('click', item.onClick);
+    // 3. Surrounding Landmark Hotspots
+    landmarksData.forEach(item => {
+      const el = document.createElement('div');
+      el.className = 'landmark-hotspot';
+      if (item.dotAtEnd) {
+        el.innerHTML = `<span>${item.title}</span><div class="landmark-dot"></div>`;
+      } else {
+        el.innerHTML = `<div class="landmark-dot"></div><span>${item.title}</span>`;
       }
-
-      layer.appendChild(beacon);
-
+      layer.appendChild(el);
       hotspotElements.push({
-        domEl: beacon,
-        pos3D: pos3D
+        domEl: el,
+        pos3D: get3DPos(item.lon, item.lat)
       });
     });
   }
@@ -209,14 +213,13 @@ const Master360App = (function () {
       const v = item.pos3D.clone();
       v.project(camera);
 
-      // Only show if in front of camera
+      // Only display if in front of camera view
       if (v.z < 1) {
         const x = (v.x * 0.5 + 0.5) * width;
         const y = (-(v.y * 0.5) + 0.5) * height;
 
-        // Clip within screen bounds
-        if (x >= -50 && x <= width + 50 && y >= -50 && y <= height + 50) {
-          item.domEl.style.display = 'block';
+        if (x >= -120 && x <= width + 120 && y >= -120 && y <= height + 120) {
+          item.domEl.style.display = item.domEl.classList.contains('hero-building-badge') ? 'flex' : (item.domEl.classList.contains('view-sample-hotspot') ? 'flex' : 'flex');
           item.domEl.style.left = `${x}px`;
           item.domEl.style.top = `${y}px`;
         } else {
@@ -230,10 +233,8 @@ const Master360App = (function () {
 
   function zoomAndNavigate(targetUrl) {
     const curtain = document.getElementById('curtain-fade');
-    if (curtain) {
-      curtain.classList.add('active');
-    }
-    // Animate zoom in
+    if (curtain) curtain.classList.add('active');
+
     const startTime = performance.now();
     const startFov = camera.fov;
     function zoomStep(now) {
@@ -262,7 +263,7 @@ const Master360App = (function () {
     if (!isUserInteracting) return;
     lon = (onMouseDownMouseX - e.clientX) * 0.15 + onMouseDownLon;
     lat = (e.clientY - onMouseDownMouseY) * 0.15 + onMouseDownLat;
-    lat = Math.max(-85, Math.min(85, lat));
+    lat = Math.max(-80, Math.min(80, lat));
   }
 
   function onPointerEnd() {
@@ -284,7 +285,7 @@ const Master360App = (function () {
     if (!isUserInteracting || e.touches.length !== 1) return;
     lon = (onMouseDownMouseX - e.touches[0].pageX) * 0.18 + onMouseDownLon;
     lat = (e.touches[0].pageY - onMouseDownMouseY) * 0.18 + onMouseDownLat;
-    lat = Math.max(-85, Math.min(85, lat));
+    lat = Math.max(-80, Math.min(80, lat));
   }
 
   function onTouchEnd() {
@@ -294,7 +295,7 @@ const Master360App = (function () {
   function onDocumentWheel(e) {
     e.preventDefault();
     targetFov += e.deltaY * 0.05;
-    targetFov = Math.max(45, Math.min(95, targetFov));
+    targetFov = Math.max(55, Math.min(105, targetFov));
   }
 
   function onResize() {
@@ -307,19 +308,16 @@ const Master360App = (function () {
   function animate() {
     animId = requestAnimationFrame(animate);
 
-    // Auto rotate
     if (autoRotate && !isUserInteracting) {
-      lon += 0.08;
+      lon += 0.06;
     }
 
-    // Smooth FOV zoom
     if (Math.abs(camera.fov - targetFov) > 0.01) {
       camera.fov += (targetFov - camera.fov) * 0.1;
       camera.updateProjectionMatrix();
     }
 
-    // Smooth spherical lookAt
-    lat = Math.max(-85, Math.min(85, lat));
+    lat = Math.max(-80, Math.min(80, lat));
     phi = THREE.MathUtils.degToRad(90 - lat);
     theta = THREE.MathUtils.degToRad(lon);
 
@@ -330,7 +328,6 @@ const Master360App = (function () {
     camera.lookAt(targetX, targetY, targetZ);
     renderer.render(scene, camera);
 
-    // Update hotspots
     updateHotspots();
   }
 

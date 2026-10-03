@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>Trải Nghiệm Thực Tế Căn Hộ Mẫu 2PN - LUFFY HOME Đà Nẵng</title>
+  <meta name="description" content="Trải nghiệm thực tế ảo 360 độ căn hộ 2 phòng ngủ 75m² cao cấp tại LUFFY HOME - Tòa nhà 9 tầng ven biển Đà Nẵng." />
+  <base href="/">
+  <link rel="shortcut icon" href="assets/trang-chu/favicon.svg" type="image/svg+xml" />
+
+  <!-- Google Fonts with full Vietnamese support -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Master Tour 360 CSS (1:1 Reference Layout) -->
+  <link rel="stylesheet" href="css/tour_360.css" />
+
+  <!-- Three.js Engine & OrbitControls -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- Clean URL State -->
+  <script>
+    if (window.location.protocol.startsWith('http') && window.location.pathname.endsWith('.html')) {
+      var cleanPath = window.location.pathname.replace(/\/index\.html$/, '/').replace(/\.html$/, '');
+      window.history.replaceState(null, '', (cleanPath || '/') + window.location.search + window.location.hash);
+    }
+  </script>
+</head>
+<body>
+
+  <!-- WebGL Render Canvas Container (Three.js 360) -->
+  <div id="canvas-container"></div>
+
+  <!-- Screen Curtain Fade for Room Transitions -->
+  <div id="curtain-fade" class="curtain-fade"></div>
+
+  <!-- Interactive 360 Hotspots Layer (Pulsing Radar Rings in 3D Space) -->
+  <div id="hotspots-layer"></div>
+
+  <!-- 1. Top Brand Logo -->
+  <div class="logo">
+    <a href="./" title="Về trang chủ LUFFY HOME">
+      <img src="assets/trang-chu/logo_white.svg" alt="LUFFY HOME" />
+    </a>
+  </div>
+
+  <!-- 2. Top Navigation Bar -->
+  <nav class="nav">
+    <ul>
+      <li>
+        <a href="tong-quan-360">
+          <span>🌐</span> TỔNG QUAN 360°
+        </a>
+      </li>
+      <li>
+        <a href="tour">
+          <span>✨</span> CĂN HỘ 3PN (108M²)
+        </a>
+      </li>
+      <li class="active">
+        <a href="can-ho-2pn">
+          <span>🏡</span> CĂN HỘ 2PN (75M²)
+        </a>
+      </li>
+      <li>
+        <a href="./">
+          <span>🏠</span> TRANG CHỦ
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- 3. Right Floating Action Buttons -->
+  <div class="buttons">
+    <!-- Info Button -->
+    <div class="icon-btn" onclick="Tour2PNApp.showPopup('popupInfo')">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="12" y1="16" x2="12" y2="12"></line>
+        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+      </svg>
+      <div class="info-tooltip">Thông tin căn hộ</div>
+    </div>
+
+    <!-- Video Button -->
+    <div class="icon-btn" onclick="Tour2PNApp.showPopup('popupVideo')">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+      </svg>
+      <div class="info-tooltip">Video giới thiệu</div>
+    </div>
+
+    <!-- Floorplan 2D Button -->
+    <div class="icon-btn" onclick="Tour2PNApp.showPopup('popupFloorplan')">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon>
+        <line x1="8" y1="2" x2="8" y2="18"></line>
+        <line x1="16" y1="6" x2="16" y2="22"></line>
+      </svg>
+      <div class="info-tooltip">Mặt bằng căn hộ</div>
+    </div>
+
+    <!-- Auto-Rotate Toggle Button -->
+    <div class="icon-btn" onclick="Tour2PNApp.toggleAutoRotate()">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="23 4 23 10 17 10"></polyline>
+        <polyline points="1 20 1 14 7 14"></polyline>
+        <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+      </svg>
+      <div class="info-tooltip">Tự động xoay 360°</div>
+    </div>
+
+    <!-- Fullscreen Toggle Button -->
+    <div class="icon-btn" onclick="Tour2PNApp.toggleFullscreen()">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+      </svg>
+      <div class="info-tooltip">Toàn màn hình</div>
+    </div>
+
+    <!-- Website Return Button -->
+    <div class="icon-btn" onclick="window.location.href='./'">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+      </svg>
+      <div class="info-tooltip">Website Chính Thức</div>
+    </div>
+  </div>
+
+  <!-- 4. Bottom View Menu Toggle Button ("Góc View") -->
+  <div id="toggle-menu-btn" onclick="Tour2PNApp.toggleMenu()">
+    <svg id="toggle-menu-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#df7627" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="6 9 12 15 18 9"></polyline>
+    </svg>
+    <div class="toggle-menu-btn-tooltip">Góc View</div>
+  </div>
+
+  <!-- 5. Bottom Thumbnail Carousel (8 Rooms 1:1 Match) -->
+  <div id="menu-scroll">
+    <div class="room-card active" data-room="phong_khach" style="background-image: url('assets/panoramas_2pn/phong_khach/thumbnail.jpg');" onclick="Tour2PNApp.selectRoom('phong_khach')">
+      <span>Phòng Khách</span>
+    </div>
+    <div class="room-card" data-room="bep" style="background-image: url('assets/panoramas_2pn/bep/thumbnail.jpg');" onclick="Tour2PNApp.selectRoom('bep')">
+      <span>Bếp Hiện Đại</span>
+    </div>
+    <div class="room-card" data-room="ban_an" style="background-image: url('assets/panoramas_2pn/ban_an/thumbnail.jpg');" onclick="Tour2PNApp.selectRoom('ban_an')">
+      <span>Bàn Ăn</span>
+    </div>
+    <div class="room-card" data-room="ban_cong" style="background-image: url('assets/panoramas_2pn/ban_cong/thumbnail.jpg');" onclick="Tour2PNApp.selectRoom('ban_cong')">
+      <span>Ban Công</span>
+    </div>
+    <div class="room-card" data-room="phong_master" style="background-image: url('assets/panoramas_2pn/phong_master/thumbnail.jpg');" onclick="Tour2PNApp.selectRoom('phong_master')">
+      <span>Phòng Master</span>
+    </div>
+    <div class="room-card" data-room="phong_ngu_2" style="background-image: url('assets/panoramas_2pn/phong_ngu_2/thumbnail.jpg');" onclick="Tour2PNApp.selectRoom('phong_ngu_2')">
+      <span>Phòng Ngủ 2</span>
+    </div>
+    <div class="room-card" data-room="wc_chung" style="background-image: url('assets/panoramas_2pn/wc_chung/thumbnail.jpg');" onclick="Tour2PNApp.selectRoom('wc_chung')">
+      <span>WC Chung</span>
+    </div>
+    <div class="room-card" data-room="wc_master" style="background-image: url('assets/panoramas_2pn/wc_master/thumbnail.jpg');" onclick="Tour2PNApp.selectRoom('wc_master')">
+      <span>WC P. Master</span>
+    </div>
+  </div>
+
+  <!-- 6. Popups Modals -->
+  <div class="popup" id="popup">
+    <div class="close-btn" onclick="Tour2PNApp.closePopup()">✕</div>
+
+    <!-- Info Content -->
+    <div class="popup-content-info" id="popupInfo">
+      <h2>THÔNG TIN CĂN HỘ 2PN</h2>
+      <em>An Yên – Lắng Đọng • Tòa Nhà LUFFY HOME Đà Nẵng</em>
+      <ul>
+        <li>⦿ <strong>Cơ cấu:</strong> 2 phòng ngủ - 2 WC - 1 Ban công view biển</li>
+        <li>⦿ <strong>Diện tích thông thủy:</strong> 75m² - 82m²</li>
+        <li>⦿ <strong>Nội thất bàn giao:</strong> Tiêu chuẩn 5 sao liền tường cao cấp nhập khẩu</li>
+        <li>⦿ <strong>Pháp lý:</strong> Sổ hồng sở hữu lâu dài</li>
+      </ul>
+      <div class="desc">
+        Căn hộ 2 Phòng Ngủ LUFFY HOME được thiết kế với phong cách không gian mở hiện đại. Phòng khách liên thông với khu bếp và bàn ăn gia đình, mở rộng ra ban công kính panorama ngắm trọn vẹn biển Mỹ Khê và đón trọn làn gió trong lành của thành phố biển Đà Nẵng.
+      </div>
+    </div>
+
+    <!-- Video Content -->
+    <div class="popup-content-video" id="popupVideo">
+      <h2>VIDEO GIỚI THIỆU CĂN HỘ 2PN</h2>
+      <em>Trải nghiệm thực tế không gian sống tinh hoa tại LUFFY HOME</em>
+      <iframe src="https://www.youtube.com/embed/juw47THOHBg?autoplay=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
+    <!-- Floorplan 2D Content with Live Radar Scan -->
+    <div class="popup-content-floorplan" id="popupFloorplan">
+      <h2>MẶT BẰNG CĂN HỘ 2PN (75M²)</h2>
+      <em>Sơ đồ phân bổ không gian và vị trí các phòng</em>
+      <div class="floorplan-map-wrapper">
+        <img src="assets/floorplans/mat_bang_can_ho_2pn.jpg" alt="Mặt bằng Căn hộ 2PN LUFFY HOME" class="floorplan-img" />
+        
+        <!-- Interactive Radar Scanner Beacon -->
+        <div id="radar-beacon-2pn" class="radar-beacon">
+          <div class="radar-sweep" id="radar-sweep-2pn"></div>
+          <div class="radar-dot"></div>
+        </div>
+
+        <!-- Room Points -->
+        <div class="floor-point" style="top: 55%; left: 45%;" onclick="Tour2PNApp.selectRoom('phong_khach')">
+          <div class="point-dot"></div>
+          <span class="point-label">P. Khách</span>
+        </div>
+        <div class="floor-point" style="top: 72%; left: 75%;" onclick="Tour2PNApp.selectRoom('bep')">
+          <div class="point-dot"></div>
+          <span class="point-label">Bếp</span>
+        </div>
+        <div class="floor-point" style="top: 58%; left: 65%;" onclick="Tour2PNApp.selectRoom('ban_an')">
+          <div class="point-dot"></div>
+          <span class="point-label">Bàn Ăn</span>
+        </div>
+        <div class="floor-point" style="top: 22%; left: 45%;" onclick="Tour2PNApp.selectRoom('ban_cong')">
+          <div class="point-dot"></div>
+          <span class="point-label">Ban Công</span>
+        </div>
+        <div class="floor-point" style="top: 40%; left: 25%;" onclick="Tour2PNApp.selectRoom('phong_master')">
+          <div class="point-dot"></div>
+          <span class="point-label">P. Master</span>
+        </div>
+        <div class="floor-point" style="top: 75%; left: 25%;" onclick="Tour2PNApp.selectRoom('phong_ngu_2')">
+          <div class="point-dot"></div>
+          <span class="point-label">P. Ngủ 2</span>
+        </div>
+        <div class="floor-point" style="top: 35%; left: 80%;" onclick="Tour2PNApp.selectRoom('wc_chung')">
+          <div class="point-dot"></div>
+          <span class="point-label">WC Chung</span>
+        </div>
+        <div class="floor-point" style="top: 25%; left: 15%;" onclick="Tour2PNApp.selectRoom('wc_master')">
+          <div class="point-dot"></div>
+          <span class="point-label">WC Master</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tour 2PN Script & Controller -->
+  <script src="js/tour2pn.js"></script>
+  <script>
+    const Tour2PNApp = (function () {
+      let menuVisible = true;
+
+      function init() {
+        const container = document.getElementById('canvas-container');
+        Tour2PN.init(container, onRoomChanged);
+
+        setInterval(updateRadarHeading, 50);
+      }
+
+      function onRoomChanged(room) {
+        document.querySelectorAll('.room-card').forEach(card => {
+          if (card.dataset.room === room.id) {
+            card.classList.add('active');
+            card.scrollIntoView({ behavior: 'smooth', inline: 'center' });
+          } else {
+            card.classList.remove('active');
+          }
+        });
+
+        const beacon = document.getElementById('radar-beacon-2pn');
+        if (beacon && room.radarPos) {
+          beacon.style.left = `${room.radarPos.x}%`;
+          beacon.style.top = `${room.radarPos.y}%`;
+        }
+      }
+
+      function selectRoom(roomId) {
+        Tour2PN.loadRoom(roomId);
+        closePopup();
+      }
+
+      function updateRadarHeading() {
+        const sweep = document.getElementById('radar-sweep-2pn');
+        if (!sweep) return;
+        const heading = Tour2PN.getCameraHeading();
+        sweep.style.transform = `rotate(${heading}deg)`;
+      }
+
+      function toggleMenu() {
+        const menu = document.getElementById('menu-scroll');
+        const toggleBtn = document.getElementById('toggle-menu-btn');
+        if (menuVisible) {
+          menu.classList.add('hide');
+          toggleBtn.classList.add('up');
+        } else {
+          menu.classList.remove('hide');
+          toggleBtn.classList.remove('up');
+        }
+        menuVisible = !menuVisible;
+      }
+
+      function showPopup(type) {
+        const popup = document.getElementById('popup');
+        const info = document.getElementById('popupInfo');
+        const video = document.getElementById('popupVideo');
+        const floorplan = document.getElementById('popupFloorplan');
+
+        if (!popup) return;
+        if (info) info.classList.remove('show');
+        if (video) video.classList.remove('show');
+        if (floorplan) floorplan.classList.remove('show');
+
+        if (type === 'popupInfo' && info) info.classList.add('show');
+        if (type === 'popupVideo' && video) video.classList.add('show');
+        if (type === 'popupFloorplan' && floorplan) floorplan.classList.add('show');
+
+        popup.classList.add('show');
+      }
+
+      function closePopup() {
+        const popup = document.getElementById('popup');
+        if (popup) popup.classList.remove('show');
+      }
+
+      function toggleAutoRotate() {
+        return Tour2PN.toggleAutoRotate();
+      }
+
+      function toggleFullscreen() {
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen().catch(err => {
+            console.warn('Fullscreen request failed:', err);
+          });
+        } else {
+          if (document.exitFullscreen) {
+            document.exitFullscreen();
+          }
+        }
+      }
+
+      return {
+        init: init,
+        selectRoom: selectRoom,
+        toggleMenu: toggleMenu,
+        showPopup: showPopup,
+        closePopup: closePopup,
+        toggleAutoRotate: toggleAutoRotate,
+        toggleFullscreen: toggleFullscreen
+      };
+    })();
+
+    document.addEventListener('DOMContentLoaded', () => {
+      Tour2PNApp.init();
+    });
+  </script>
+</body>
+</html>

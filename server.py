@@ -40,6 +40,8 @@ class CleanURLHandler(http.server.SimpleHTTPRequestHandler):
             return os.path.join(DIRECTORY, 'tong-quan-360.html')
         if clean_norm in ['canho3pn', 'can-ho-3pn', 'public/360newtowndanang/canho3pn', 'public/360newtowndanang/canho3pn/index.html']:
             return os.path.join(DIRECTORY, 'tour.html')
+        if clean_norm in ['canho2pn', 'can-ho-2pn', 'tour-2pn', 'public/360newtowndanang/canho2pn', 'public/360newtowndanang/canho2pn/index.html']:
+            return os.path.join(DIRECTORY, 'can-ho-2pn.html')
 
         translated = super().translate_path(path)
         if not os.path.exists(translated):
