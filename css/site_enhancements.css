@@ -1,0 +1,379 @@
+/* ==========================================================================
+   LUFFY HOME - SITE ENHANCEMENTS (BILINGUAL i18n & MOBILE OPTIMIZED FORM)
+   ========================================================================== */
+
+:root {
+  --gold-primary: #df7627;
+  --gold-hover: #c25e17;
+  --gold-gradient: linear-gradient(135deg, #f59e0b, #d97706);
+  --navy-dark: #0f172a;
+  --navy-glass: rgba(15, 23, 42, 0.92);
+}
+
+/* ----------------------------------------------------
+   1. LANGUAGE SWITCHER (VI / EN) STYLING
+   ---------------------------------------------------- */
+.lang {
+  display: inline-flex !important;
+  align-items: center !important;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(223, 118, 39, 0.35);
+  border-radius: 30px;
+  padding: 3px 8px;
+  gap: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  user-select: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.lang:hover {
+  border-color: var(--gold-primary);
+  box-shadow: 0 4px 12px rgba(223, 118, 39, 0.2);
+}
+.lang svg {
+  color: var(--gold-primary);
+}
+.lang a, .lang button.lang-btn {
+  background: transparent;
+  border: none;
+  font-size: 12px;
+  font-weight: 700;
+  color: #64748b;
+  padding: 3px 8px;
+  border-radius: 20px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  line-height: 1;
+}
+.lang a.active, .lang button.lang-btn.active {
+  background: var(--gold-primary);
+  color: #ffffff !important;
+  box-shadow: 0 2px 6px rgba(223, 118, 39, 0.4);
+}
+.lang a:hover:not(.active), .lang button.lang-btn:hover:not(.active) {
+  color: var(--gold-primary);
+}
+
+/* ----------------------------------------------------
+   2. STICKY MOBILE BOTTOM BAR (Mobile <= 768px)
+   ---------------------------------------------------- */
+.mobile-bottom-bar {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-bottom-bar {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 62px;
+    background: rgba(15, 23, 42, 0.96);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-top: 1px solid rgba(255, 215, 0, 0.25);
+    z-index: 99998;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.35);
+    padding: 6px 8px;
+    gap: 6px;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  .mb-btn {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 10.5px;
+    font-weight: 700;
+    color: #e2e8f0;
+    transition: all 0.2s ease;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 0 2px;
+  }
+  .mb-btn svg {
+    margin-bottom: 2px;
+  }
+
+  .mb-btn-call {
+    color: #38bdf8;
+  }
+  .mb-btn-zalo {
+    color: #0088ff;
+  }
+  .mb-btn-360 {
+    color: #f59e0b;
+  }
+
+  .mb-btn-form {
+    flex: 1.35;
+    background: var(--gold-gradient);
+    color: #ffffff;
+    box-shadow: 0 2px 10px rgba(245, 158, 11, 0.5);
+    border-radius: 25px;
+    animation: pulseGlow 2.5s infinite;
+  }
+  .mb-btn-form svg {
+    margin-bottom: 1px;
+  }
+
+  /* Padding offset so footer is not hidden by bottom bar */
+  body {
+    padding-bottom: 65px !important;
+  }
+  .sc_fixed {
+    bottom: 74px !important;
+  }
+}
+
+@keyframes pulseGlow {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.03); box-shadow: 0 4px 16px rgba(245, 158, 11, 0.7); }
+  100% { transform: scale(1); }
+}
+
+/* ----------------------------------------------------
+   3. MOBILE BOTTOM SHEET / POPUP DRAWER FORM
+   ---------------------------------------------------- */
+.mobile-drawer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 99999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.mobile-drawer-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-drawer-card {
+  width: 100%;
+  max-width: 520px;
+  background: #ffffff;
+  border-radius: 20px 20px 0 0;
+  padding: 24px 20px 28px 20px;
+  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.35);
+  transform: translateY(100%);
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+@media (min-width: 769px) {
+  .mobile-drawer-overlay {
+    align-items: center;
+  }
+  .mobile-drawer-card {
+    border-radius: 20px;
+    transform: translateY(20px) scale(0.95);
+  }
+  .mobile-drawer-overlay.active .mobile-drawer-card {
+    transform: translateY(0) scale(1);
+  }
+}
+
+.mobile-drawer-overlay.active .mobile-drawer-card {
+  transform: translateY(0);
+}
+
+.drawer-drag-pill {
+  width: 44px;
+  height: 5px;
+  background: #cbd5e1;
+  border-radius: 10px;
+  margin: 0 auto 16px auto;
+}
+
+.drawer-close-btn {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  width: 32px;
+  height: 32px;
+  background: #f1f5f9;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #475569;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  transition: background 0.2s ease;
+}
+.drawer-close-btn:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.drawer-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.drawer-header h3 {
+  font-family: 'Playfair Display', serif, 'Montserrat', sans-serif;
+  color: #0f172a;
+  font-size: 19px;
+  font-weight: 800;
+  margin: 0 0 6px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.drawer-header p {
+  color: #64748b;
+  font-size: 13px;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.drawer-form-group {
+  margin-bottom: 14px;
+}
+.drawer-form-label {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #334155;
+  margin-bottom: 6px;
+}
+
+.drawer-input {
+  width: 100%;
+  height: 46px;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 0 14px;
+  font-size: 14.5px;
+  color: #0f172a;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+}
+.drawer-input:focus {
+  border-color: var(--gold-primary);
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(223, 118, 39, 0.15);
+}
+
+.drawer-chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.chip-btn {
+  flex: 1;
+  min-width: 90px;
+  padding: 9px 8px;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #475569;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  user-select: none;
+}
+.chip-btn.active {
+  background: rgba(223, 118, 39, 0.12);
+  border-color: var(--gold-primary);
+  color: var(--gold-primary);
+  font-weight: 700;
+}
+
+.drawer-submit-btn {
+  width: 100%;
+  height: 48px;
+  background: var(--gold-gradient);
+  border: none;
+  border-radius: 25px;
+  color: #ffffff;
+  font-size: 14.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(217, 119, 6, 0.4);
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.drawer-submit-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 22px rgba(217, 119, 6, 0.5);
+}
+.drawer-submit-btn:active {
+  transform: translateY(1px);
+}
+
+/* ----------------------------------------------------
+   4. TOAST NOTIFICATION MODAL
+   ---------------------------------------------------- */
+.toast-success-modal {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-100px);
+  background: #0f172a;
+  color: #ffffff;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  border-radius: 30px;
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 100000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.toast-success-modal.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+.toast-icon {
+  width: 26px;
+  height: 26px;
+  background: #10b981;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 800;
+}
+.toast-text {
+  font-size: 13.5px;
+  font-weight: 600;
+}
