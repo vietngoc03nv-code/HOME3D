@@ -1,4 +1,35 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/public/360NewTownDaNang/CanHo2PN/:path*", "destination": "/can-ho-2pn.html" },
+    { "source": "/public/360NewTownDaNang/CanHo2PN", "destination": "/can-ho-2pn.html" },
+    { "source": "/public/360NewTownDaNang/CanHo3PN/:path*", "destination": "/tour.html" },
+    { "source": "/public/360NewTownDaNang/CanHo3PN", "destination": "/tour.html" },
+    { "source": "/public/360NewTownDaNang/:path*", "destination": "/tong-quan-360.html" },
+    { "source": "/public/360NewTownDaNang", "destination": "/tong-quan-360.html" },
+    { "source": "/360NewTownDaNang/CanHo2PN/:path*", "destination": "/can-ho-2pn.html" },
+    { "source": "/360NewTownDaNang/CanHo2PN", "destination": "/can-ho-2pn.html" },
+    { "source": "/360NewTownDaNang/CanHo3PN/:path*", "destination": "/tour.html" },
+    { "source": "/360NewTownDaNang/CanHo3PN", "destination": "/tour.html" },
+    { "source": "/360NewTownDaNang/:path*", "destination": "/tong-quan-360.html" },
+    { "source": "/360NewTownDaNang", "destination": "/tong-quan-360.html" },
+    { "source": "/tong-quan-360", "destination": "/tong-quan-360.html" },
+    { "source": "/tour", "destination": "/tour.html" },
+    { "source": "/can-ho-2pn", "destination": "/can-ho-2pn.html" },
+    { "source": "/canho2pn", "destination": "/can-ho-2pn.html" },
+    { "source": "/CanHo2PN", "destination": "/can-ho-2pn.html" },
+    { "source": "/canho3pn", "destination": "/tour.html" },
+    { "source": "/CanHo3PN", "destination": "/tour.html" },
+    { "source": "/gioi-thieu", "destination": "/gioi-thieu.html" },
+    { "source": "/vi-tri", "destination": "/vi-tri-du-an.html" },
+    { "source": "/vi-tri-du-an", "destination": "/vi-tri-du-an.html" },
+    { "source": "/tien-ich", "destination": "/tien-ich.html" },
+    { "source": "/mat-bang", "destination": "/thiet-ke.html" },
+    { "source": "/thiet-ke", "destination": "/thiet-ke.html" },
+    { "source": "/thu-vien", "destination": "/thu-vien-hinh-anh.html" },
+    { "source": "/thu-vien-hinh-anh", "destination": "/thu-vien-hinh-anh.html" },
+    { "source": "/tin-tuc", "destination": "/tin-tuc.html" },
+    { "source": "/lien-he", "destination": "/lien-he.html" }
+  ]
 }
