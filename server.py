@@ -32,6 +32,15 @@ class CleanURLHandler(http.server.SimpleHTTPRequestHandler):
         return super().send_head()
 
     def translate_path(self, path):
+        parsed = urllib.parse.urlsplit(path)
+        clean_norm = parsed.path.strip('/').lower()
+        
+        # Route aliases for 360 virtual tours
+        if clean_norm in ['360', 'tong-quan-360', 'tour-tong-quan', 'tong-quan', 'public/360newtowndanang', 'public/360newtowndanang/index.html']:
+            return os.path.join(DIRECTORY, 'tong-quan-360.html')
+        if clean_norm in ['canho3pn', 'can-ho-3pn', 'public/360newtowndanang/canho3pn', 'public/360newtowndanang/canho3pn/index.html']:
+            return os.path.join(DIRECTORY, 'tour.html')
+
         translated = super().translate_path(path)
         if not os.path.exists(translated):
             if os.path.isfile(translated + '.html'):

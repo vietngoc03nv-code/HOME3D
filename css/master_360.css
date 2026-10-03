@@ -1,0 +1,577 @@
+/* ==========================================================================
+   MASTER 360 VIRTUAL TOUR STYLES - LUFFY HOME DANANG
+   Matches 1:1 Reference Architecture with Ultra-Smooth Three.js WebGL Engine
+   ========================================================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #0b1320;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+#canvas-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  cursor: grab;
+}
+
+#canvas-container.grabbing {
+  cursor: grabbing;
+}
+
+/* Screen transition curtain */
+.curtain-fade {
+  position: fixed;
+  inset: 0;
+  background: #0b1320;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 5000;
+  transition: opacity 0.4s ease;
+}
+.curtain-fade.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ==========================================================================
+   1. TOP BRAND LOGO
+   ========================================================================== */
+.brand-logo {
+  position: fixed;
+  top: 24px;
+  left: 28px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  padding: 8px 18px;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.brand-logo:hover {
+  transform: translateY(-2px);
+  background: rgba(15, 23, 42, 0.7);
+  border-color: rgba(223, 118, 39, 0.6);
+  box-shadow: 0 10px 28px rgba(223, 118, 39, 0.3);
+}
+.brand-logo img {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
+}
+.brand-logo-text {
+  display: flex;
+  flex-direction: column;
+}
+.brand-logo-text .title {
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+.brand-logo-text .subtitle {
+  color: #df7627;
+  font-weight: 600;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ==========================================================================
+   2. TOP NAVIGATION BAR (Exact Match to Reference .nav)
+   ========================================================================== */
+.nav {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 48rem;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 14px;
+  border-radius: 40px;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+}
+
+.nav ul {
+  display: flex;
+  gap: 8px;
+  list-style: none;
+  align-items: center;
+}
+
+.nav li {
+  padding: 0;
+  border-radius: 30px;
+}
+
+.nav li a, .nav li button {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 18px;
+  border-radius: 30px;
+  color: #ffffff;
+  font-size: 13.5px;
+  font-weight: 600;
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+
+.nav li.active a, .nav li.active button {
+  background: linear-gradient(135deg, #df7627, #c25e17);
+  box-shadow: 0 4px 16px rgba(223, 118, 39, 0.45);
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.nav li a:hover, .nav li button:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-1px);
+}
+
+/* Mobile Toggle */
+.menu-toggle {
+  display: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: white;
+  transition: transform 0.3s ease;
+}
+
+.mobile-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(11, 19, 32, 0.92);
+  backdrop-filter: blur(16px);
+  z-index: 9998;
+  color: white;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  font-size: 1.2rem;
+}
+.mobile-overlay a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 30px;
+  transition: 0.3s;
+}
+.mobile-overlay a.active, .mobile-overlay a:hover {
+  background: linear-gradient(135deg, #df7627, #c25e17);
+}
+
+/* ==========================================================================
+   3. RIGHT TOOLBAR BUTTONS (Exact Match to Reference .buttons)
+   ========================================================================== */
+.buttons {
+  position: fixed;
+  top: 50%;
+  right: 24px;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 14px;
+  z-index: 100;
+  align-items: center;
+  flex-direction: column;
+}
+
+.icon-btn {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  color: white;
+}
+
+.icon-btn:hover {
+  transform: scale(1.15);
+  background: rgba(223, 118, 39, 0.9);
+  border-color: #df7627;
+  box-shadow: 0 6px 20px rgba(223, 118, 39, 0.5);
+}
+
+.icon-btn svg {
+  transition: transform 0.2s ease;
+}
+
+.icon-btn .info-tooltip {
+  display: none;
+  position: absolute;
+  right: 58px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(15, 23, 42, 0.9);
+  backdrop-filter: blur(12px);
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+  border: 1px solid rgba(255,255,255,0.15);
+}
+
+.icon-btn:hover .info-tooltip {
+  display: block;
+  animation: fadeInTooltip 0.2s ease-out;
+}
+
+@keyframes fadeInTooltip {
+  from { opacity: 0; transform: translateY(-50%) translateX(6px); }
+  to { opacity: 1; transform: translateY(-50%) translateX(0); }
+}
+
+/* ==========================================================================
+   4. 3D HOTSPOTS LAYER & PULSING BEACONS
+   ========================================================================== */
+#hotspots-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  overflow: hidden;
+}
+
+.hotspot-beacon {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  pointer-events: auto;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.hotspot-beacon:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* Landmark Standard Hotspot */
+.hotspot-inner {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2.5px solid #df7627;
+  box-shadow: 0 0 12px rgba(223, 118, 39, 0.8);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hotspot-inner::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #df7627;
+}
+
+.hotspot-pulse {
+  position: absolute;
+  inset: -10px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  animation: Hs_Stylepulse 1.8s infinite cubic-bezier(0.2, 0.6, 0.35, 1);
+}
+
+@keyframes Hs_Stylepulse {
+  0% { transform: scale(0.5); opacity: 1; box-shadow: 0 0 0 0 rgba(223, 118, 39, 0.8); }
+  50% { transform: scale(1.3); opacity: 0.8; box-shadow: 0 0 15px 4px rgba(255, 255, 255, 0.6); }
+  100% { transform: scale(2.2); opacity: 0; box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+}
+
+/* Building Hero Hotspot (Central Focus) */
+.hotspot-building .hotspot-inner {
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, #df7627, #ff9f43);
+  border: 3px solid #ffffff;
+  box-shadow: 0 0 24px rgba(223, 118, 39, 1);
+}
+.hotspot-building .hotspot-inner::after {
+  width: 14px;
+  height: 14px;
+  background: #ffffff;
+}
+.hotspot-building .hotspot-pulse {
+  inset: -16px;
+  border: 3px solid rgba(255, 159, 67, 0.9);
+  animation: Hs_Style1pulse 1.6s infinite ease-out;
+}
+
+@keyframes Hs_Style1pulse {
+  0% { transform: scale(0.5); opacity: 1; box-shadow: 0 0 0 0 #df7627; }
+  50% { transform: scale(1.4); opacity: 0.9; box-shadow: 0 0 20px 8px #ffffff; }
+  100% { transform: scale(2.4); opacity: 0; box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+}
+
+/* Hotspot Floating Tooltip Card */
+.hotspot-card {
+  position: absolute;
+  bottom: calc(100% + 14px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(15, 23, 42, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+  transition: all 0.2s ease;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.hotspot-card::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px;
+  border-style: solid;
+  border-color: rgba(15, 23, 42, 0.88) transparent transparent transparent;
+}
+
+.hotspot-building .hotspot-card {
+  background: rgba(15, 23, 42, 0.95);
+  border: 1.5px solid #df7627;
+  padding: 10px 18px;
+  box-shadow: 0 8px 30px rgba(223, 118, 39, 0.35);
+}
+
+/* ==========================================================================
+   5. POPUP MODALS (Exact 1:1 Match to Reference)
+   ========================================================================== */
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  width: 92%;
+  max-width: 720px;
+  max-height: 88vh;
+  padding: 28px;
+  background: #132438ea;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  color: white;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  z-index: 10000;
+  display: none;
+  opacity: 0;
+  overflow-y: auto;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+}
+
+.popup.show {
+  display: block;
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.popup .close-btn {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  font-size: 18px;
+  cursor: pointer;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.popup .close-btn:hover {
+  background: #df7627;
+  transform: rotate(90deg);
+}
+
+.popup-content-info,
+.popup-content-video,
+.popup-content-floorplan {
+  display: none;
+}
+
+.popup-content-info.show,
+.popup-content-video.show,
+.popup-content-floorplan.show {
+  display: block;
+}
+
+.popup h2 {
+  font-size: 22px;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 6px;
+  letter-spacing: 0.5px;
+}
+.popup h2 span {
+  color: #df7627;
+}
+
+.popup em {
+  display: block;
+  margin-bottom: 18px;
+  font-style: normal;
+  color: #94a3b8;
+  font-size: 13.5px;
+}
+
+.popup ul {
+  list-style: none;
+  margin-bottom: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.popup ul li {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #e2e8f0;
+}
+.popup ul li strong {
+  color: #df7627;
+}
+
+.popup .desc {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #cbd5e1;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 14px 18px;
+  border-radius: 12px;
+  border-left: 3px solid #df7627;
+}
+
+.popup iframe {
+  width: 100%;
+  height: 360px;
+  border: none;
+  border-radius: 12px;
+  margin-top: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* Floorplan inside modal */
+.floorplan-modal-img {
+  width: 100%;
+  max-height: 60vh;
+  object-fit: contain;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.2);
+  margin-top: 14px;
+}
+
+/* ==========================================================================
+   6. RESPONSIVE DESIGN (Mobile & Tablet)
+   ========================================================================== */
+@media (max-width: 768px) {
+  .brand-logo {
+    top: 16px;
+    left: 16px;
+    padding: 6px 14px;
+  }
+  .brand-logo img {
+    height: 26px;
+  }
+  .brand-logo-text .title {
+    font-size: 12px;
+  }
+  .nav {
+    display: none;
+  }
+  .menu-toggle {
+    display: block;
+    position: fixed;
+    top: 18px;
+    right: 18px;
+    z-index: 9999;
+    width: 44px;
+    height: 44px;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(10px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  .buttons {
+    right: 14px;
+    gap: 10px;
+  }
+  .icon-btn {
+    width: 40px;
+    height: 40px;
+  }
+  .popup {
+    padding: 20px;
+  }
+  .popup iframe {
+    height: 220px;
+  }
+}
